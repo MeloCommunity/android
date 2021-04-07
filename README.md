@@ -81,10 +81,11 @@ An app that builds on the basic spotify to add comment functionality to songs. U
    => Detail
 
 ## Wireframes
-<img src="YOUR_WIREFRAME_IMAGE_URL" width=600>
+<img src="https://user-images.githubusercontent.com/32282010/113899803-2ae04d00-979b-11eb-8b50-0608145a7f3d.png" width=600>
 
 ### [BONUS] Digital Wireframes & Mockups
-<img src="YOUR_WIREFRAME_IMAGE_URL" width=600>
+#### Digital Wireframe
+<img src="https://user-images.githubusercontent.com/32282010/113899803-2ae04d00-979b-11eb-8b50-0608145a7f3d.png" width=600>
 
 ### [BONUS] Interactive Prototype
 
