@@ -90,11 +90,66 @@ An app that builds on the basic spotify to add comment functionality to songs. U
 ### [BONUS] Interactive Prototype
 
 ## Schema 
-[This section will be completed in Unit 9]
 ### Models
-[Add table of models]
+#### Account
+ | Property      | Type     | Description |
+   | ------------- | -------- | ------------|
+   | userID      | String   | taken from spotify account user id |
+   | image         | Image     | image of user taken from spotify |
+   | liked songs       | Arraylist of Posts   | list of liked posts/songs taken from the user |
+   
+#### Post
+ | Property      | Type     | Description |
+   | ------------- | -------- | ------------|
+   | songID      | String   | from spotify |
+   | nameSong         | String     |  name of song |
+   | nameArtist     | String  | name of artist |
+   | nameAlbum      | String   | name of album |
+   | image         | Image     |  image of song/album |
+   | comments     |  Arraylist of Comments  | comments on this specific song |
+   | streamsCount     |  Integer |  number of streams (if available on the api) |
+   | createdAt     |  DateTime  |  date song was created at |
+
+#### Artist 
+ | Property      | Type     | Description |
+   | ------------- | -------- | ------------|
+   | artistID      | String   | artists id from spotify |
+   | name         | String     | name of artist |
+   | image     | Image  |  image of artist |
+   | feed      | Array of Posts   | taken from spotify |
+   | biography         | String     |  from spotify |
+   | monthlyListener     |  Integer |  from spotify |
+   
+#### Comment 
+ | Property      | Type     | Description |
+   | ------------- | -------- | ------------|
+   | songId      | String   | what song is it about |
+   | commentId         | String     | comment’s unique id |
+   | userId     | String  |  user who left the comment |
+   | createdAt      | DateTime  | time comment was posted |
+   | description         | Text     |  the actual comment  |
+   
+   
 ### Networking
-- [Add list of network requests by screen ]
-- [Create basic snippets for each Parse network request]
-- [OPTIONAL: List endpoints if using existing API such as Yelp]
+#### List of network requests by screen
+  - Home Feed Screen
+    - (Read/GET) Query all posts from liked songs by user 
+  - Profile screen
+    - (Read/GET) Query logged in user object
+  - Artists screen
+    - (Read/GET) Query artists information
+  - Detail Screen
+    - (Create/POST) Create a new comment on a post/song
+    - (Update/PUT) Edit an existing comment
+    - (Delete) Delete an existing comment
+    
+#### [OPTIONAL:] Existing API Endpoints
+##### Spotify API
+- Base URL - [https://github.com/kaaes/spotify-web-api-android](https://github.com/kaaes/spotify-web-api-android)
+
+   HTTP Verb | Endpoint | Description
+   ----------|----------|------------
+    `GET`    | /playlists | query all posts from liked songs by user 
+    `GET`    | /me   | query logged in user object
+    `GET`    | /artists/{id}	 |  query artists information
 
