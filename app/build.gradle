@@ -1,5 +1,6 @@
 plugins {
     id 'com.android.application'
+    id 'com.google.gms.google-services'
 }
 
 android {
@@ -39,4 +40,6 @@ dependencies {
 
     implementation project(':spotify-app-remote-release-0.7.1')
     implementation 'com.google.code.gson:gson:2.8.6'
+    implementation platform('com.google.firebase:firebase-bom:27.1.0')
+    implementation 'com.google.firebase:firebase-analytics'
 }

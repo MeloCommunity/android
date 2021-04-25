@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "615855310746",
+    "project_id": "melocommune",
+    "storage_bucket": "melocommune.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:615855310746:android:e4b84a38b5958abfca5c23",
+        "android_client_info": {
+          "package_name": "com.example.melocommunity"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "615855310746-nq3qhr0rvnh2ifkrs1pmnktc8grup176.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.melocommunity",
+            "certificate_hash": "8644224071e312ec36b162fc59fe2a1addae0da3"
+          }
+        },
+        {
+          "client_id": "615855310746-7ms133fs0cqhabsktrluhp4tnl9fqh3l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDtpZNnyWue6U59aapXUpQc6BCpuMTq8qo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "615855310746-7ms133fs0cqhabsktrluhp4tnl9fqh3l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
