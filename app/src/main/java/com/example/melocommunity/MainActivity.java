@@ -2,14 +2,21 @@ package com.example.melocommunity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.media.Image;
 import android.os.Bundle;
 
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.melocommunity.Connectors.SongService;
 import com.example.melocommunity.models.Song;
 import com.spotify.android.appremote.api.ConnectionParams;
@@ -20,7 +27,11 @@ import com.spotify.protocol.client.Subscription;
 import com.spotify.protocol.types.PlayerState;
 import com.spotify.protocol.types.Track;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.Set;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -28,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
     private TextView songView;
     private Button addBtn;
     private Song song;
+    private ImageView imageView;
+    private Context context;
 
     private SongService songService;
     private ArrayList<Song> recentlyPlayedTracks;
@@ -45,9 +58,24 @@ public class MainActivity extends AppCompatActivity {
         userView = (TextView) findViewById(R.id.user);
         songView = (TextView) findViewById(R.id.song);
         addBtn = (Button) findViewById(R.id.add);
+        imageView = (ImageView) findViewById(R.id.imageProfile);
+
 
         SharedPreferences sharedPreferences = this.getSharedPreferences("SPOTIFY", 0);
-        userView.setText(sharedPreferences.getString("userid", "No User"));
+        userView.setText(sharedPreferences.getString("display_name", "No User"));
+        String url = sharedPreferences.getString("imageUrl", "No User");
+
+        RequestOptions options = new RequestOptions()
+                .centerCrop()
+                .placeholder(R.mipmap.ic_launcher_round)
+                .error(R.mipmap.ic_launcher_round);
+
+        Glide.with(this)
+                .load(url)
+                .apply(options)
+                .into(imageView );
+
+        //Log.i("MainActivity", sharedPreferences.getAll().toString());
 
         getTracks();
 
@@ -73,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void updateSong() {
         if (recentlyPlayedTracks.size() > 0) {
-            songView.setText(recentlyPlayedTracks.get(0).getName());
+            songView.setText("Last song played: " + recentlyPlayedTracks.get(0).getName());
             song = recentlyPlayedTracks.get(0);
         }
     }
