@@ -1,11 +1,18 @@
 package com.example.melocommunity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.os.Bundle;
 
 import android.util.Log;
+import android.view.MenuItem;
 
+import com.example.melocommunity.fragments.AccountFragment;
+import com.example.melocommunity.fragments.FeedFragment;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.spotify.android.appremote.api.ConnectionParams;
 import com.spotify.android.appremote.api.Connector;
 import com.spotify.android.appremote.api.SpotifyAppRemote;
@@ -16,13 +23,38 @@ import com.spotify.protocol.types.Track;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String CLIENT_ID = "4ad25465beac49c280459235fe0adba0";
+    private static final String CLIENT_ID = "676d4db0d44b4f95956d8efa0ff25ff8";
     private static final String REDIRECT_URI = "com.example.melocommunity://callback";
     private SpotifyAppRemote mSpotifyAppRemote;
+
+    final FragmentManager fragmentManager = getSupportFragmentManager();
+    private BottomNavigationView bottomNavigationView;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        bottomNavigationView = findViewById(R.id.bottomNavigation);
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                Fragment fragment;
+                switch (menuItem.getItemId()) {
+                    case R.id.action_account:
+                        fragment = new AccountFragment();
+                        break;
+                    case R.id.action_feed:
+                    default:
+                        fragment = new FeedFragment();
+                        break;
+                }
+                fragmentManager.beginTransaction().replace(R.id.flContainer, fragment).commit();
+                return true;
+            }
+        });
+        // Set default selection
+        bottomNavigationView.setSelectedItemId(R.id.action_feed);
     }
 
     @Override
