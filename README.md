@@ -25,7 +25,7 @@ An app that builds on the basic spotify to add comment functionality to songs. U
 **Required Must-have Stories**
 
 * As a user I should be able to register an account
-[x]As a user I should be able to log into my account
+* [x] As a user I should be able to log into my account
 * As a user I should be able to see a feed of posts
 * As a user I should be able to search for a song or artist
 * As a user I should be able to follow an artist
@@ -153,6 +153,6 @@ An app that builds on the basic spotify to add comment functionality to songs. U
     `GET`    | /me   | query logged in user object
     `GET`    | /artists/{id}	 |  query artists information
 
-### Walkthrough gif showing progress so far:
+### Gif showing progress so far:
 (https://user-images.githubusercontent.com/53497620/116325540-62398c80-a790-11eb-8873-0c04d10903bb.gif)
 
