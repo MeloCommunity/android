@@ -24,61 +24,51 @@ An app that builds on the basic spotify to add comment functionality to songs. U
 
 **Required Must-have Stories**
 
-* As a user I should be able to register an account
-* [x] As a user I should be able to log into my account
+* [x] As a user I should be able to log into my spotify account
 * As a user I should be able to see a feed of posts
-* As a user I should be able to search for a song or artist
-* As a user I should be able to follow an artist
-* As a user I should be able to like a post
+* As a user I should be able to play a song
+* As a user I should be able to add a song to my personal library
 * As a user I should be able to comment on a post
-* As a user I should be able to log out of my account
+* As a user I should be able to see comments on a post
+
 
 
 
 **Optional Nice-to-have Stories**
 
 * As a user I should be able to share a post
-* As a user I should be able to save/archive a post
 * As a user I should be able to private/public my profile
-* As a user I should be able to follow other users
 * As a user I should be able to view my own profile
-* As a user I should be able to create a playlist of posts
+* As a user I should be able to search a song
 
 ### 2. Screen Archetypes
-* Registration Screen
-   * As a user I should be able to register an account
-* Login Screen
-   * As a user I should be able to log into my account
-* Stream
-   * As a user I should be able to see a feed of posts
-* Search
-   * As a user I should be able to search for a song or artist 
-   * As a user I should be able to follow an artist
-* Detail
-   * As a user I should be able to like a post
-   * As a user I should be able to comment on a post
-* Settings
-   * As a user I should be able to log out of my account
+* Splash Screen
+   * As a user I should be able to log into my spotify account
+* Feed Screen
+   * As a user I should be able to see a feed of posts, to play a song, add a song to my personal library, to comment on a post, see comments on a post.
+* Account Screen
+   * As a user I should be able to see my personal information 
 
 ### 3. Navigation
 
 **Tab Navigation** (Tab to Screen)
 
 * Home Feed
-* Search
+* Account
+* Search (Stretch feature)
 
 **Flow Navigation** (Screen to Screen)
 
-* Registration
+* Splash
    => Login
 * Login
-   => Home
-* Home
-   => Feed (Stream)
-   => Search
-   => Settings
-* Feed (Stream)
-   => Detail
+   => Account Screen
+* Account Screen
+   => Feed 
+   => Search (Stretch)
+   => Settings (Stretch)
+* Feed 
+   => Detail (Stretch)
 
 ## Wireframes
 <img src="https://user-images.githubusercontent.com/32282010/113899803-2ae04d00-979b-11eb-8b50-0608145a7f3d.png" width=600>
