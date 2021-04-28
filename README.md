@@ -154,5 +154,5 @@ An app that builds on the basic spotify to add comment functionality to songs. U
     `GET`    | /artists/{id}	 |  query artists information
 
 ### Gif showing progress so far:
-(https://user-images.githubusercontent.com/53497620/116325540-62398c80-a790-11eb-8873-0c04d10903bb.gif)
+![Current_Walkthrough](https://user-images.githubusercontent.com/53497620/116325540-62398c80-a790-11eb-8873-0c04d10903bb.gif)
 
