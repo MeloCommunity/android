@@ -2,9 +2,10 @@
 
 ## Table of Contents
 1. [Overview](#Overview)
-1. [Product Spec](#Product-Spec)
-1. [Wireframes](#Wireframes)
-2. [Schema](#Schema)
+2. [Product Spec](#Product-Spec)
+3. [Wireframes](#Wireframes)
+4. [Schema](#Schema)
+4. [Walkthrough] (#Walkthrough)
 
 ## Overview
 ### Description
@@ -143,6 +144,9 @@ An app that builds on the basic spotify to add comment functionality to songs. U
     `GET`    | /me   | query logged in user object
     `GET`    | /artists/{id}	 |  query artists information
 
-### Gif showing progress so far:
-![Current_Walkthrough](https://user-images.githubusercontent.com/53497620/116325540-62398c80-a790-11eb-8873-0c04d10903bb.gif)
+## Video Walkthrough
+
+Here's a walkthrough of implemented user stories:
+
+<img src='walkthrough.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
