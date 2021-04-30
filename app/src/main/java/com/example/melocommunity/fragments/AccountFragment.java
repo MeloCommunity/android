@@ -1,5 +1,6 @@
 package com.example.melocommunity.fragments;
 
+import android.app.ActionBar;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -8,18 +9,21 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.melocommunity.Connectors.SongService;
 import com.example.melocommunity.R;
 import com.example.melocommunity.models.Song;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 
@@ -31,9 +35,12 @@ public class AccountFragment extends Fragment {
     private TextView userView;
     private TextView songView;
     private Button addBtn;
+    private Button currentBtn;
     private Song song;
-    private ImageView imageView;
+    private ImageView imageProfile;
+    private ImageView imageSong;
     private Context context;
+    private String imageSongUrl;
 
     private SongService songService;
     private ArrayList<Song> recentlyPlayedTracks;
@@ -63,12 +70,13 @@ public class AccountFragment extends Fragment {
         userView = view.findViewById(R.id.user);
         songView = view.findViewById(R.id.song);
         addBtn = view.findViewById(R.id.add);
-        imageView = view.findViewById(R.id.imageProfile);
+        imageProfile = view.findViewById(R.id.imageProfile);
+        imageSong = view.findViewById(R.id.imageSong);
 
 
         SharedPreferences sharedPreferences = getContext().getSharedPreferences("SPOTIFY", 0);
         userView.setText(sharedPreferences.getString("display_name", "No User"));
-        String url = sharedPreferences.getString("imageUrl", "No User");
+        String userUrl = sharedPreferences.getString("imageUrl", "No User");
 
         RequestOptions options = new RequestOptions()
                 .centerCrop()
@@ -76,9 +84,9 @@ public class AccountFragment extends Fragment {
                 .error(R.mipmap.ic_launcher_round);
 
         Glide.with(this)
-                .load(url)
+                .load(userUrl)
                 .apply(options)
-                .into(imageView );
+                .into(imageProfile);
 
         //Log.i("MainActivity", sharedPreferences.getAll().toString());
 
@@ -90,25 +98,40 @@ public class AccountFragment extends Fragment {
 
     private final View.OnClickListener addListener = v -> {
         songService.addSongToLibrary(this.song);
-        if (recentlyPlayedTracks.size() > 0) {
-            recentlyPlayedTracks.remove(0);
-        }
-        updateSong();
+        //Toast.makeText(getActivity(),"\"" + this.song.getName() + "\" was added to your library!",Toast.LENGTH_SHORT).show();
     };
 
 
     private void getTracks() {
-        songService.getRecentlyPlayedTracks(() -> {
+//            songService.getCurrentlyPlaying(() -> {
+//                song = songService.getSong();
+//                updateSong();
+//            });
+
+        songService.getRecentlyPlayedTracks(()->{
             recentlyPlayedTracks = songService.getSongs();
-            updateSong();
+            updateSongRecent();
         });
+
+    }
+
+    private void updateSongRecent() {
+        if (recentlyPlayedTracks.size() > 0) {
+            songView.setText("Last song played: " + recentlyPlayedTracks.get(0).getName() +" by " + recentlyPlayedTracks.get(0).getArtist());
+        }
+        song = recentlyPlayedTracks.get(0);
+
+        imageSongUrl = song.getImageUrl();
+
+        Glide.with(this)
+                .load(imageSongUrl)
+                .into(imageSong);
     }
 
     private void updateSong() {
-        if (recentlyPlayedTracks.size() > 0) {
-            songView.setText("Last song played: " + recentlyPlayedTracks.get(0).getName());
-            song = recentlyPlayedTracks.get(0);
-        }
+       songView.setText("Playing: " + song.getName() + " by " + song.getArtist());
     }
+
+
 
 }
