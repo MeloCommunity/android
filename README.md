@@ -5,7 +5,7 @@
 2. [Product Spec](#Product-Spec)
 3. [Wireframes](#Wireframes)
 4. [Schema](#Schema)
-4. [Walkthrough] (#Walkthrough)
+5. [Walkthrough] (#Walkthrough)
 
 ## Overview
 ### Description
@@ -146,7 +146,7 @@ An app that builds on the basic spotify to add comment functionality to songs. U
 
 ## Walkthrough
 
-Here's a walkthrough of implemented user stories:
+Here's a Walkthrough of implemented user stories:
 
 <img src='walkthrough.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
