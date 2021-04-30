@@ -144,7 +144,7 @@ An app that builds on the basic spotify to add comment functionality to songs. U
     `GET`    | /me   | query logged in user object
     `GET`    | /artists/{id}	 |  query artists information
 
-## Video Walkthrough
+## Walkthrough
 
 Here's a walkthrough of implemented user stories:
 
