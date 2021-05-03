@@ -12,7 +12,9 @@ public class LikedSongs {
     public Image imageSong;
     public Date createdAt;
 
-    public LikedSongs(String songID, String nameSong, String nameArtist, Image imageSong, Date createdAt) {
+    public LikedSongs(String songID, String nameSong, String nameArtist,
+                      Image imageSong, Date createdAt) {
+
         this.songID = songID;
         this.nameSong = nameSong;
         this.nameArtist = nameArtist;
