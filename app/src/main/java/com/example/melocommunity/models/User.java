@@ -1,10 +1,7 @@
 package com.example.melocommunity.models;
 
-import com.spotify.protocol.types.Image;
-import android.media.Image;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
+
 
 public class User {
     public String birthdate;
