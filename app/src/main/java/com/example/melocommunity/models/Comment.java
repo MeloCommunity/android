@@ -1,54 +1,47 @@
 package com.example.melocommunity.models;
 
-import org.w3c.dom.Text;
+import com.parse.ParseClassName;
+import com.parse.ParseObject;
 
 import java.util.Date;
 
-public class Comment {
-    public String songId;
-    public String commentId;
-    public String userId;
-    public Date createdAt;
-    public Text description; //might wanna make this a String
+@ParseClassName("Comment")
+public class Comment extends ParseObject {
+    public static final String KEY_SONGID="songID";
+    public static final String KEY_USERID="userID";
+    public static final String KEY_DESCRIPTION="description";
 
-    //we can just create the object and pass in params instead of having manual getters and setters for each field
-    public Comment(String songId, String commentId, String userId, Date createdAt, Text desciption) {
-        this.songId = songId;
-        this.commentId = commentId;
-        this.userId = userId;
-        this.createdAt = createdAt;
-        this.description = description;
+    public String getSongID(){
+        return getString(KEY_SONGID);
     }
 
-    public String getId() {
-        return commentId;
+    public void setSongID(String songID){
+        put(KEY_SONGID, songID);
     }
 
-    public void setId(String id) {
-        this.commentId = commentId;
+    //TODO handle this better
+    public String getCommentID(){
+        return getObjectId();
     }
 
-    public String getUserId() {
-        return userId;
+    public String getUserID(){
+        return getString(KEY_USERID);
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setUserID(String userID){
+        put(KEY_USERID, userID);
     }
 
-    public String getSongIdr() {
-        return songId;
+    //TODO handle this better
+    public Date getPostCreatedAt(){
+        return getCreatedAt();
     }
 
-    public void setSongId(String songId) {
-        this.songId = songId;
+    public String getDescription(){
+        return getString(KEY_DESCRIPTION);
     }
 
-    public Text getDescription() {
-        return description;
-    }
-
-    public void setDescription(Text Description) {
-        this.description = description;
+    public void setDescription(String description){
+        put(KEY_DESCRIPTION, description);
     }
 }
