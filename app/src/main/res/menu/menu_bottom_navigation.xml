@@ -12,4 +12,9 @@
         android:icon="@drawable/ic_baseline_account_circle_24"
         android:title="Account"
         app:showAsAction="always" />
+    <item
+        android:id="@+id/action_search"
+        android:icon="@drawable/ic_baseline_search_24"
+        android:title="Search"
+        app:showAsAction="always" />
 </menu>

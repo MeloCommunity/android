@@ -12,6 +12,7 @@ import android.view.MenuItem;
 
 import com.example.melocommunity.fragments.AccountFragment;
 import com.example.melocommunity.fragments.FeedFragment;
+import com.example.melocommunity.fragments.SearchFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 
@@ -35,10 +36,14 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.action_account:
                         fragment = new AccountFragment();
                         break;
+                    case R.id.action_search:
+                        fragment = new SearchFragment();
+                        break;
                     case R.id.action_feed:
                     default:
                         fragment = new FeedFragment();
                         break;
+
                 }
                 fragmentManager.beginTransaction().replace(R.id.flContainer, fragment).commit();
                 return true;
