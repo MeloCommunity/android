@@ -7,6 +7,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,13 +21,17 @@ import com.bumptech.glide.Glide;
 import com.example.melocommunity.Connectors.SongService;
 import com.example.melocommunity.R;
 import com.example.melocommunity.models.Song;
-
 import java.util.ArrayList;
+import com.example.melocommunity.LikedSongsAdapter;
+import com.example.melocommunity.models.LikedSongs;
+import java.util.List;
+
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class FeedFragment extends Fragment {
+
 
     private TextView tvSongTitle;
     private TextView tvArtist;
@@ -38,6 +44,11 @@ public class FeedFragment extends Fragment {
 
     private SongService songService;
     private ArrayList<Song> topTracks;
+
+    private RecyclerView rvPosts;
+    private LikedSongsAdapter adapter;
+    private List<LikedSongs> allLikedSongs;
+
 
     public FeedFragment() {
         // Required empty public constructor
@@ -59,6 +70,7 @@ public class FeedFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
 
         songService = new SongService(getContext().getApplicationContext());
         tvSongTitle = view.findViewById(R.id.tvSongTitle);
@@ -91,5 +103,22 @@ public class FeedFragment extends Fragment {
         Glide.with(this)
                 .load(imageSongUrl)
                 .into(ivSongPoster);
+
+        rvPosts = view.findViewById(R.id.rvPosts);
+
+        allLikedSongs = new ArrayList<>();
+        adapter = new LikedSongsAdapter(getContext(), allLikedSongs);
+
+        // Steps to use the recycler view:
+        // 0. create layout for one row in the list
+        // 1. create the adapter
+        // 2. create the data source
+        // 3. set the adapter on the recycler view
+        rvPosts.setAdapter(adapter);
+        // 4. set the layout manager on the recycler view
+        rvPosts.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        //queryPosts() not implemented yet
+
     }
     }
