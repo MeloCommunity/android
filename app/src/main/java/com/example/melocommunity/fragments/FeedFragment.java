@@ -76,10 +76,27 @@ public class FeedFragment extends Fragment {
         tvSongTitle = view.findViewById(R.id.tvSongTitle);
         tvArtist = view.findViewById(R.id.tvArtist);
         ivSongPoster = view.findViewById(R.id.ivSongPoster);
+        rvPosts = view.findViewById(R.id.rvPosts);
 
         SharedPreferences sharedPreferences = getContext().getSharedPreferences("SPOTIFY", 0);
 
         getTracks();
+
+
+        allLikedSongs = new ArrayList<>();
+        adapter = new LikedSongsAdapter(getContext(), allLikedSongs);
+
+        // Steps to use the recycler view:
+        // 0. create layout for one row in the list
+        // 1. create the adapter
+        // 2. create the data source
+        // 3. set the adapter on the recycler view
+        rvPosts.setAdapter(adapter);
+        // 4. set the layout manager on the recycler view
+        rvPosts.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        //queryPosts() not implemented yet
+
 
     }
 
@@ -104,21 +121,6 @@ public class FeedFragment extends Fragment {
                 .load(imageSongUrl)
                 .into(ivSongPoster);
 
-        rvPosts = view.findViewById(R.id.rvPosts);
-
-        allLikedSongs = new ArrayList<>();
-        adapter = new LikedSongsAdapter(getContext(), allLikedSongs);
-
-        // Steps to use the recycler view:
-        // 0. create layout for one row in the list
-        // 1. create the adapter
-        // 2. create the data source
-        // 3. set the adapter on the recycler view
-        rvPosts.setAdapter(adapter);
-        // 4. set the layout manager on the recycler view
-        rvPosts.setLayoutManager(new LinearLayoutManager(getContext()));
-
-        //queryPosts() not implemented yet
 
     }
     }
