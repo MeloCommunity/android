@@ -30,7 +30,7 @@ public class SplashActivity extends AppCompatActivity {
     private static final String CLIENT_ID =  "676d4db0d44b4f95956d8efa0ff25ff8";
     private static final String REDIRECT_URI = "com.example.melocommunity://callback";
     private static final int REQUEST_CODE = 1337;
-    private static final String SCOPES = "user-read-recently-played,user-library-modify,user-read-email,user-read-private";
+    private static final String SCOPES = "user-read-recently-played,user-library-modify,user-read-email,user-read-private, user-top-read";
 
     private SpotifyAppRemote mSpotifyAppRemote;
 
