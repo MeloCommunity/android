@@ -10,7 +10,7 @@ public class User {
     public String email;
     public String id;
     public String imageUrl;
-    public ArrayList<LikedSongs> likedSongs;
+    public ArrayList<FeedSongs> feedSongs;
 
 
     public void setImageUrl(String imageUrl) {

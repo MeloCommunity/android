@@ -10,10 +10,10 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -22,8 +22,8 @@ import com.example.melocommunity.Connectors.SongService;
 import com.example.melocommunity.R;
 import com.example.melocommunity.models.Song;
 import java.util.ArrayList;
-import com.example.melocommunity.LikedSongsAdapter;
-import com.example.melocommunity.models.LikedSongs;
+import com.example.melocommunity.adapters.FeedSongsAdapter;
+import com.example.melocommunity.models.FeedSongs;
 import java.util.List;
 
 
@@ -32,6 +32,7 @@ import java.util.List;
  */
 public class FeedFragment extends Fragment {
 
+    public static final String TAG = "FeedFragment";
 
     private TextView tvSongTitle;
     private TextView tvArtist;
@@ -46,8 +47,8 @@ public class FeedFragment extends Fragment {
     private ArrayList<Song> topTracks;
 
     private RecyclerView rvPosts;
-    private LikedSongsAdapter adapter;
-    private List<LikedSongs> allLikedSongs;
+    private FeedSongsAdapter feedSongsAdapter;
+    private List<Song> allFeedSongs;
 
 
     public FeedFragment() {
@@ -83,15 +84,15 @@ public class FeedFragment extends Fragment {
         getTracks();
 
 
-        allLikedSongs = new ArrayList<>();
-        adapter = new LikedSongsAdapter(getContext(), allLikedSongs);
+        allFeedSongs = new ArrayList<>();
+        feedSongsAdapter = new FeedSongsAdapter(getContext(), allFeedSongs);
 
         // Steps to use the recycler view:
         // 0. create layout for one row in the list
         // 1. create the adapter
         // 2. create the data source
         // 3. set the adapter on the recycler view
-        rvPosts.setAdapter(adapter);
+        rvPosts.setAdapter(feedSongsAdapter);
         // 4. set the layout manager on the recycler view
         rvPosts.setLayoutManager(new LinearLayoutManager(getContext()));
 
@@ -102,25 +103,12 @@ public class FeedFragment extends Fragment {
 
     private void getTracks() {
 
-        songService.getTopTracks(()->{
+        songService.getTopTracks(() -> {
             topTracks = songService.getSongs();
-            updateTopSongs();
-    });
+            allFeedSongs.addAll(topTracks);
+            feedSongsAdapter.notifyDataSetChanged();
+            Log.i(TAG, "FEED: " + allFeedSongs );
+
+        });
+    }
 }
-
-    private void updateTopSongs() {
-        if (topTracks.size() > 0) {
-            tvSongTitle.setText(topTracks.get(5).getName());
-            tvArtist.setText( topTracks.get(5).getArtist());
-        }
-        song = topTracks.get(5);
-
-        imageSongUrl = song.getImageUrl();
-
-        Glide.with(this)
-                .load(imageSongUrl)
-                .into(ivSongPoster);
-
-
-    }
-    }
