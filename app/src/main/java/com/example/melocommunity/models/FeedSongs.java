@@ -4,7 +4,7 @@ import com.spotify.protocol.types.Image;
 
 import java.util.Date;
 
-public class LikedSongs {
+public class FeedSongs {
 
     public String songID;
     public String nameSong;
@@ -12,8 +12,8 @@ public class LikedSongs {
     public Image imageSong;
     public Date createdAt;
 
-    public LikedSongs(String songID, String nameSong, String nameArtist,
-                      Image imageSong, Date createdAt) {
+    public FeedSongs(String songID, String nameSong, String nameArtist,
+                     Image imageSong, Date createdAt) {
 
         this.songID = songID;
         this.nameSong = nameSong;

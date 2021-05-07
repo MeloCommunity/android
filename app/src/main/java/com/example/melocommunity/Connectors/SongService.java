@@ -160,7 +160,7 @@ public class SongService {
 
 
     public ArrayList<Song> getTopTracks(final UserService.VolleyCallBack callBack) {
-        String endpoint = "https://api.spotify.com/v1/me/top/tracks";
+        String endpoint = "https://api.spotify.com/v1/me/top/tracks?limit=50";
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
                 (Request.Method.GET, endpoint, null, response -> {
                     Gson gson = new Gson();
@@ -174,6 +174,7 @@ public class SongService {
 
                             JSONArray arrayImages = object.getJSONArray("images");
                             Song song = gson.fromJson(object.toString(), Song.class);
+                            song.setName(jsonArray.getJSONObject(n).getString("name"));
                             song.setArtist(arrayArtists.getJSONObject(0).getString("name"));
                             song.setImageUrl(arrayImages.getJSONObject(0).getString("url"));
                             songs.add(song);
