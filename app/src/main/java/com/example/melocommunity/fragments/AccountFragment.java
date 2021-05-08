@@ -69,7 +69,7 @@ public class AccountFragment extends Fragment {
         songService = new SongService(getContext().getApplicationContext());
         userView = view.findViewById(R.id.user);
         songView = view.findViewById(R.id.song);
-        addBtn = view.findViewById(R.id.add);
+        //addBtn = view.findViewById(R.id.add);
         imageProfile = view.findViewById(R.id.imageProfile);
         imageSong = view.findViewById(R.id.imageSong);
 
@@ -90,9 +90,9 @@ public class AccountFragment extends Fragment {
 
         //Log.i("MainActivity", sharedPreferences.getAll().toString());
 
-        getTracks();
+        //getTracks();
 
-        addBtn.setOnClickListener(addListener);
+        //addBtn.setOnClickListener(addListener);
 
     }
 

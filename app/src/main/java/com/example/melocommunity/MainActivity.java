@@ -55,7 +55,9 @@ public class MainActivity extends AppCompatActivity {
     private static final String SCOPES = "user-read-recently-played,user-library-modify,user-read-email,user-read-private, user-top-read, app-remote-control";
 
     private SpotifyAppRemote mSpotifyAppRemote;
-    private int stateDrawPlayPause = 0;
+    private int stateDrawPlayPause = 1;
+    private int stateLikeButton = 1;
+    private String trackId = null;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -74,15 +76,30 @@ public class MainActivity extends AppCompatActivity {
         if (id == R.id.action_play) {
             if (stateDrawPlayPause==1) {
                 mSpotifyAppRemote.getPlayerApi().resume();
+                findViewById(R.id.action_play).setBackgroundResource(android.R.drawable.ic_media_pause);
+                stateDrawPlayPause = 0;
             }
             else {
                 mSpotifyAppRemote.getPlayerApi().pause();
+                findViewById(R.id.action_play).setBackgroundResource(android.R.drawable.ic_media_play);
+                stateDrawPlayPause = 1;
             }
 
         }
         if (id == R.id.action_next) {
             mSpotifyAppRemote.getPlayerApi().skipNext();
-            // do something here
+        }
+        if (id == R.id.action_like) {
+            if (stateLikeButton == 0) {
+                mSpotifyAppRemote.getUserApi().addToLibrary(trackId);
+                findViewById(R.id.action_like).setBackgroundResource(R.drawable.ic_baseline_favorite);
+                stateLikeButton = 1;
+
+            } else {
+                mSpotifyAppRemote.getUserApi().removeFromLibrary(trackId);
+                findViewById(R.id.action_like).setBackgroundResource(R.drawable.ic_baseline_favorite_border);
+                stateLikeButton = 1;
+            }
         }
         return super.onOptionsItemSelected(item);
     }
@@ -220,12 +237,14 @@ public class MainActivity extends AppCompatActivity {
         TextView playing = findViewById(R.id.playing);
         View actionPlay = findViewById(R.id.action_play);
         ImageView songImage = findViewById(R.id.songImage);
+        View likeButton = findViewById(R.id.action_like);
         // Subscribe to PlayerState
         mSpotifyAppRemote.getPlayerApi()
                 .subscribeToPlayerState()
                 .setEventCallback(playerState -> {
                     final Track track = playerState.track;
                     if (track != null) {
+                        trackId = track.uri;
                         playing.setText(track.name + " by " + track.artist.name);
                         mSpotifyAppRemote.getImagesApi().getImage(track.imageUri).setResultCallback(bitmap -> {
                             Glide.with(this)
@@ -241,6 +260,17 @@ public class MainActivity extends AppCompatActivity {
                         actionPlay.setBackgroundResource(android.R.drawable.ic_media_pause);
                         stateDrawPlayPause = 0;
                     }
+
+                    mSpotifyAppRemote.getUserApi().getLibraryState(trackId).setResultCallback(status -> {
+                        if (status.isAdded) {
+                            likeButton.setBackgroundResource(R.drawable.ic_baseline_favorite);
+                            stateLikeButton = 1;
+
+                        } else {
+                            likeButton.setBackgroundResource(R.drawable.ic_baseline_favorite_border);
+                            stateLikeButton = 0;
+                        }
+                    });
                 });
     }
 }
