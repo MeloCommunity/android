@@ -9,7 +9,7 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/playing"
+        android:id="@+id/currentSong"
         android:layout_width="336dp"
         android:layout_height="30dp"
         android:layout_alignParentTop="true"

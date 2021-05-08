@@ -2,14 +2,12 @@ package com.example.melocommunity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 
 import android.util.Log;
@@ -17,7 +15,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -58,6 +55,8 @@ public class MainActivity extends AppCompatActivity {
     private int stateDrawPlayPause = 1;
     private int stateLikeButton = 1;
     private String trackId = null;
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -234,10 +233,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void connected() {
-        TextView playing = findViewById(R.id.playing);
         View actionPlay = findViewById(R.id.action_play);
         ImageView songImage = findViewById(R.id.songImage);
         View likeButton = findViewById(R.id.action_like);
+        TextView playing = findViewById(R.id.currentSong);
         // Subscribe to PlayerState
         mSpotifyAppRemote.getPlayerApi()
                 .subscribeToPlayerState()
