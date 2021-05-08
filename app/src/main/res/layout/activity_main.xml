@@ -8,12 +8,38 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <TextView
+        android:id="@+id/playing"
+        android:layout_width="336dp"
+        android:layout_height="30dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="14dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginEnd="11dp"
+        android:layout_toEndOf="@+id/songImage"
+        android:background="#E3E0E0"
+        android:elegantTextHeight="true"
+        android:text="Currently Playing"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        app:autoSizeTextType="uniform" />
+
+    <ImageView
+        android:id="@+id/songImage"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        tools:srcCompat="@tools:sample/avatars" />
+
     <FrameLayout
         android:id="@+id/flContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/bottomNavigation"
-        />
+        android:layout_below="@+id/songImage">
+
+    </FrameLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigation"
