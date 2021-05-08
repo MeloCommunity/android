@@ -51,7 +51,6 @@
         android:layout_alignParentStart="true"
         android:layout_marginStart="55dp"
         android:layout_marginTop="6dp"
-        android:text="last song"
         android:textAlignment="center"
         android:textColor="#000000"
         android:textSize="24sp"
@@ -76,15 +75,15 @@
         android:layout_toEndOf="@+id/song"
         tools:src="@tools:sample/avatars" />
 
-    <Button
-        android:id="@+id/add"
-        android:layout_width="315dp"
-        android:layout_height="73dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="20dp"
-        android:text="Add to liked songs"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497" />
+<!--    <Button-->
+<!--        android:id="@+id/add"-->
+<!--        android:layout_width="315dp"-->
+<!--        android:layout_height="73dp"-->
+<!--        android:layout_alignParentBottom="true"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:layout_marginBottom="20dp"-->
+<!--        android:text="Add to liked songs"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.497" />-->
 
 </RelativeLayout>

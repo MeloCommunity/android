@@ -17,4 +17,5 @@
         android:icon="@drawable/ic_baseline_search_24"
         android:title="Search"
         app:showAsAction="always" />
+
 </menu>
