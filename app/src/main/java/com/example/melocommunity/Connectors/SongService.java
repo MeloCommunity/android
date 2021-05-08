@@ -200,4 +200,52 @@ public class SongService {
         return songs;
     }
 
+
+
+    public ArrayList<Song> getSearchTracks(final UserService.VolleyCallBack callBack, String songName) {
+        String endpoint = "https://api.spotify.com/v1/search?q=" + songName + "&type=track&limit=50";
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
+                (Request.Method.GET, endpoint, null, response -> {
+                    Gson gson = new Gson();
+                    JSONArray jsonArray = null;
+                    try {
+                        jsonArray = response.getJSONObject("tracks").optJSONArray("items");
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    Log.i(TAG, "arraylistSearch: " + jsonArray);
+                    for (int n = 0; n < jsonArray.length(); n++) {
+                        try {
+                            JSONObject object = jsonArray.getJSONObject(n);
+                            object = object.optJSONObject("album");
+                            JSONArray arrayArtists = object.getJSONArray("artists");
+
+                            JSONArray arrayImages = object.getJSONArray("images");
+                            Song song = gson.fromJson(object.toString(), Song.class);
+                            song.setName(jsonArray.getJSONObject(n).getString("name"));
+                            song.setArtist(arrayArtists.getJSONObject(0).getString("name"));
+                            song.setImageUrl(arrayImages.getJSONObject(0).getString("url"));
+                            songs.add(song);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    callBack.onSuccess();
+                }, error -> {
+                    // TODO: Handle error
+
+                }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> headers = new HashMap<>();
+                String token = sharedPreferences.getString("token", "");
+                String auth = "Bearer " + token;
+                headers.put("Authorization", auth);
+                return headers;
+            }
+        };
+        queue.add(jsonObjectRequest);
+        return songs;
+    }
+
 }
