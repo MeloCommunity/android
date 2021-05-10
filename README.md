@@ -26,9 +26,9 @@ An app that builds on the basic spotify to add comment functionality to songs. U
 **Required Must-have Stories**
 
 * [x] As a user I should be able to log into my spotify account
-* As a user I should be able to see a feed of posts
-* As a user I should be able to play a song
-* As a user I should be able to add a song to my personal library
+* [x] As a user I should be able to see a feed of posts
+* [x] As a user I should be able to play a song
+* [x] As a user I should be able to add a song to my personal library
 * As a user I should be able to comment on a post
 * As a user I should be able to see comments on a post
 
