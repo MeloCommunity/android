@@ -40,7 +40,7 @@ An app that builds on the basic spotify to add comment functionality to songs. U
 * As a user I should be able to share a post
 * As a user I should be able to private/public my profile
 * As a user I should be able to view my own profile
-* As a user I should be able to search a song
+* [x] As a user I should be able to search a song
 
 ### 2. Screen Archetypes
 * Splash Screen
