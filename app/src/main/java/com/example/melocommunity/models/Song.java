@@ -4,10 +4,12 @@ import com.google.gson.JsonObject;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.parceler.Parcel;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 
+@Parcel
 public class Song {
 
     private String id;
@@ -15,6 +17,9 @@ public class Song {
     private String uri;
     private String artist;
     public String imageUrl;
+
+    //empty constructor needed by the Parceler library
+    public Song() {}
 
     public Song(String id, String name) {
         this.name = name;

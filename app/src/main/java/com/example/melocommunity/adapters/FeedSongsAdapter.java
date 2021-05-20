@@ -1,20 +1,23 @@
 package com.example.melocommunity.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.melocommunity.DetailActivity;
 import com.example.melocommunity.R;
-import com.example.melocommunity.models.FeedSongs;
 import com.example.melocommunity.models.Song;
-import com.spotify.protocol.types.Image;
+
+import org.parceler.Parcels;
 
 import java.util.List;
 
@@ -48,6 +51,7 @@ public class FeedSongsAdapter extends RecyclerView.Adapter<FeedSongsAdapter.View
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
+        private RelativeLayout container;
         private TextView tvSongTitle;
         private TextView tvArtist;
 
@@ -60,9 +64,10 @@ public class FeedSongsAdapter extends RecyclerView.Adapter<FeedSongsAdapter.View
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            tvSongTitle = itemView.findViewById(R.id.tvSongTitle);
-            tvArtist = itemView.findViewById(R.id.tvArtist);
+            tvSongTitle = itemView.findViewById(R.id.tvUserName);
+            tvArtist = itemView.findViewById(R.id.tvComment);
             ivSongPoster = itemView.findViewById(R.id.ivSongPoster);
+            container = itemView.findViewById(R.id.container);
 
 
         }
@@ -77,6 +82,15 @@ public class FeedSongsAdapter extends RecyclerView.Adapter<FeedSongsAdapter.View
             Glide.with(context)
                     .load(imageSongUrl)
                     .into(ivSongPoster);
+
+            container.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent(context, DetailActivity.class);
+                    i.putExtra("Song", Parcels.wrap(feedSong));
+                    context.startActivity(i);
+                }
+            });
             }
         }
     }
