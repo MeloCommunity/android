@@ -8,8 +8,11 @@ import java.util.Date;
 @ParseClassName("Comment")
 public class Comment extends ParseObject {
     public static final String KEY_SONGID="songID";
+    public static final String USER_NAME="userName";
     public static final String KEY_USERID="userID";
     public static final String KEY_DESCRIPTION="description";
+
+    public static final String USER_IMAGE_URL="userImageUrl";
 
     public String getSongID(){
         return getString(KEY_SONGID);
@@ -17,6 +20,12 @@ public class Comment extends ParseObject {
 
     public void setSongID(String songID){
         put(KEY_SONGID, songID);
+    }
+
+    public static String getUserName() { return USER_NAME; }
+
+    public void setUserName(String userName){
+        put(USER_NAME, userName);
     }
 
     //TODO handle this better
@@ -43,5 +52,13 @@ public class Comment extends ParseObject {
 
     public void setDescription(String description){
         put(KEY_DESCRIPTION, description);
+    }
+
+    public static String getUserImageUrl() {
+        return USER_IMAGE_URL;
+    }
+
+    public void setUserImageUrl(String userImageUrl){
+        put(USER_IMAGE_URL, userImageUrl);
     }
 }

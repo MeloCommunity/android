@@ -19,15 +19,11 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.example.melocommunity.Connectors.SongService;
 import com.example.melocommunity.R;
 import com.example.melocommunity.adapters.SearchSongsAdapter;
 import com.example.melocommunity.models.Song;
 import java.util.ArrayList;
-import com.example.melocommunity.adapters.FeedSongsAdapter;
-import com.example.melocommunity.models.FeedSongs;
-import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.List;
 
@@ -83,8 +79,8 @@ public class SearchFragment extends Fragment {
 
 
         songService = new SongService(getContext().getApplicationContext());
-        tvSongTitle = view.findViewById(R.id.tvSongTitle);
-        tvArtist = view.findViewById(R.id.tvArtist);
+        tvSongTitle = view.findViewById(R.id.tvUserName);
+        tvArtist = view.findViewById(R.id.tvComment);
         ivSongPoster = view.findViewById(R.id.ivSongPoster);
         etSongName = view.findViewById(R.id.etSongName);
         btnSearch = view.findViewById(R.id.btnSearch);
