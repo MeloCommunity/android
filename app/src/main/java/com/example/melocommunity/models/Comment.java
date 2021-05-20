@@ -22,7 +22,7 @@ public class Comment extends ParseObject {
         put(KEY_SONGID, songID);
     }
 
-    public static String getUserName() { return USER_NAME; }
+    public  String getUserName() { return getString(USER_NAME); }
 
     public void setUserName(String userName){
         put(USER_NAME, userName);
@@ -54,11 +54,9 @@ public class Comment extends ParseObject {
         put(KEY_DESCRIPTION, description);
     }
 
-    public static String getUserImageUrl() {
-        return USER_IMAGE_URL;
+    public  String getUserImageUrl() {
+        return getString(USER_IMAGE_URL);
     }
 
-    public void setUserImageUrl(String userImageUrl){
-        put(USER_IMAGE_URL, userImageUrl);
-    }
+    public void setUserImageUrl(String userImageUrl){ put(USER_IMAGE_URL, userImageUrl); }
 }
