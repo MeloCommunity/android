@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.melocommunity"
-        minSdkVersion 21
+        minSdkVersion 26
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -71,5 +71,8 @@ dependencies {
     implementation 'com.squareup.okhttp3:logging-interceptor:3.8.1' // for logging API calls to LogCat
 
     implementation 'androidx.recyclerview:recyclerview:1.2.0'
+
+    implementation 'org.parceler:parceler-api:1.1.12'
+    annotationProcessor 'org.parceler:parceler:1.1.12'
 
 }
