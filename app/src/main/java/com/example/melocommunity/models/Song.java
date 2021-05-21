@@ -17,6 +17,15 @@ public class Song {
     private String uri;
     private String artist;
     public String imageUrl;
+    public int Release;
+
+
+    public int getRelease() {
+        return Release;
+    }
+    public void setRelease(int release) {
+        Release = release;
+    }
 
     //empty constructor needed by the Parceler library
     public Song() {}

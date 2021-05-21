@@ -7,18 +7,30 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
+    android:layout_marginLeft="0dp"
     android:orientation="vertical"
     tools:context=".fragments.AccountFragment">
 
     <ImageView
         android:id="@+id/ivSongPoster"
         android:layout_width="140dp"
-        android:layout_height="wrap_content"
+        android:layout_height="140dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="0dp"
-        android:layout_marginTop="6dp"
+        android:layout_marginTop="0dp"
         tools:src="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/lengthSong2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvComment"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_toEndOf="@+id/ivSongPoster"
+        android:inputType="textPersonName"
+        android:text="04:12" />
 
 
     <TextView
@@ -45,6 +57,16 @@
         android:textSize="18sp"
         tools:text="The Weeknd" />
 
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:layout_below="@+id/ivSongPoster"
+        android:layout_marginTop="5dp"
+        android:background="?android:attr/listDivider"
+        android:backgroundTint="#787878"
+        android:foregroundTint="#787878" />
+
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -52,15 +74,5 @@
         android:layout_toEndOf="@+id/ivSongPoster">
 
     </com.google.android.material.textfield.TextInputLayout>
-
-    <View
-        android:id="@+id/divider"
-        android:layout_width="match_parent"
-        android:layout_height="5dp"
-        android:layout_below="@+id/ivSongPoster"
-        android:layout_marginTop="20dp"
-        android:background="?android:attr/listDivider"
-        android:backgroundTint="#787878"
-        android:foregroundTint="#787878" />
 
 </RelativeLayout>

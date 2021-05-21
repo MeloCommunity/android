@@ -176,6 +176,7 @@ public class SongService {
                             Song song = gson.fromJson(object.toString(), Song.class);
                             song.setId(jsonArray.getJSONObject(n).getString("id"));
                             song.setName(jsonArray.getJSONObject(n).getString("name"));
+                            song.setRelease(jsonArray.getJSONObject(n).getInt("duration_ms"));
                             song.setArtist(arrayArtists.getJSONObject(0).getString("name"));
                             song.setImageUrl(arrayImages.getJSONObject(0).getString("url"));
                             songs.add(song);

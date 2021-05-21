@@ -2,44 +2,51 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
-    android:layout_margin="10dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="10dp"
+    android:layout_marginLeft="0dp"
+    android:orientation="vertical"
     tools:context=".MainActivity">
-
-    <TextView
-        android:id="@+id/currentSong"
-        android:layout_width="336dp"
-        android:layout_height="30dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="14dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginEnd="11dp"
-        android:layout_toEndOf="@+id/songImage"
-        android:background="#E3E0E0"
-        android:elegantTextHeight="true"
-        android:text="Currently Playing"
-        android:textAlignment="center"
-        android:textColor="#000000"
-        android:textStyle="bold"
-        app:autoSizeTextType="uniform" />
-
-    <ImageView
-        android:id="@+id/songImage"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        tools:srcCompat="@tools:sample/avatars" />
 
     <FrameLayout
         android:id="@+id/flContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/bottomNavigation"
-        android:layout_below="@+id/songImage">
+        android:layout_below="@+id/songImage"
+        android:layout_marginLeft="0dp">
 
     </FrameLayout>
+
+    <ImageView
+        android:id="@+id/songImage"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/currentSong"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/flContainer"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="0dp"
+        android:layout_toEndOf="@+id/songImage"
+        android:background="#79E3E0E0"
+        android:elegantTextHeight="true"
+        android:lineSpacingExtra="8sp"
+        android:padding="2dp"
+        android:rotationX="0"
+        android:text="Currently Playing"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        app:autoSizeTextType="uniform" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigation"
