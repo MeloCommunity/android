@@ -47,10 +47,10 @@ public class DetailActivity extends AppCompatActivity {
     Button btnPost;
     EditText etDescription;
 
+    String userName;
+
     // item_comment
-    private TextView tvUserName;
-    private TextView tvComment;
-    private ImageView ivUserImage;
+
 
     private RecyclerView rvComments;
 
@@ -103,11 +103,9 @@ public class DetailActivity extends AppCompatActivity {
 
 
         // item comment in rvComments
-        tvUserName = findViewById(R.id.tvUserName);
-        tvUserName.setText(sharedPreferences.getString("display_name", "No User"));
 
-        tvComment = findViewById(R.id.tvComment);
-        ivUserImage = findViewById(R.id.ivUserImage);
+        userName = (sharedPreferences.getString("display_name", "No User"));
+
         rvComments = findViewById(R.id.rvComments);
 
         allComments = new ArrayList<>();
@@ -132,8 +130,8 @@ public class DetailActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Description cannot be empty", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                Log.d("CHECKING", tvUserName.getText().toString() + " " + userUrl);
-                postComment(description, tvUserName.getText().toString(), userUrl, song.getId());
+                Log.d("CHECKING", userName + " " + userUrl);
+                postComment(description, userName, userUrl, song.getId());
             }
         });
 
@@ -173,6 +171,7 @@ public class DetailActivity extends AppCompatActivity {
             if (e==null){
                 allComments.add(comment);
                 commentsAdapter.notifyDataSetChanged();
+                etDescription.setText("");
                 //Save was done
             }else{
                 //Something went wrong
