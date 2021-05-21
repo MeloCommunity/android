@@ -244,7 +244,7 @@ public class MainActivity extends AppCompatActivity {
                     final Track track = playerState.track;
                     if (track != null) {
                         trackId = track.uri;
-                        playing.setText(track.name + " by " + track.artist.name);
+                        playing.setText(track.name + "\n" + track.artist.name);
                         mSpotifyAppRemote.getImagesApi().getImage(track.imageUri).setResultCallback(bitmap -> {
                             Glide.with(this)
                                     .load(bitmap)

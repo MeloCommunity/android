@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -22,6 +23,7 @@ import com.example.melocommunity.R;
 import com.example.melocommunity.models.Song;
 import java.util.ArrayList;
 import com.example.melocommunity.adapters.FeedSongsAdapter;
+import com.spotify.android.appremote.api.SpotifyAppRemote;
 
 import java.util.List;
 
@@ -78,6 +80,7 @@ public class FeedFragment extends Fragment {
         ivSongPoster = view.findViewById(R.id.ivSongPoster);
         rvPosts = view.findViewById(R.id.rvPosts);
 
+
         SharedPreferences sharedPreferences = getContext().getSharedPreferences("SPOTIFY", 0);
 
         getTracks();
@@ -94,8 +97,6 @@ public class FeedFragment extends Fragment {
         rvPosts.setAdapter(feedSongsAdapter);
         // 4. set the layout manager on the recycler view
         rvPosts.setLayoutManager(new LinearLayoutManager(getContext()));
-
-        //queryPosts() not implemented yet
 
 
     }

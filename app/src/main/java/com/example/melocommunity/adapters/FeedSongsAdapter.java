@@ -23,8 +23,8 @@ import java.util.List;
 
 public class FeedSongsAdapter extends RecyclerView.Adapter<FeedSongsAdapter.ViewHolder> {
 
-    private Context context;
-    private List<Song> feedSongs;
+    private final Context context;
+    private final List<Song> feedSongs;
 
     public FeedSongsAdapter(Context context, List<Song> feedSongs) {
         this.context = context;
@@ -51,11 +51,12 @@ public class FeedSongsAdapter extends RecyclerView.Adapter<FeedSongsAdapter.View
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
-        private RelativeLayout container;
-        private TextView tvSongTitle;
-        private TextView tvArtist;
+        private final RelativeLayout container;
+        private final TextView tvSongTitle;
+        private final TextView tvArtist;
 
-        private ImageView ivSongPoster;
+        private final ImageView ivSongPoster;
+        private final TextView lengthSong2;
 
         String imageSongUrl;
 
@@ -68,6 +69,7 @@ public class FeedSongsAdapter extends RecyclerView.Adapter<FeedSongsAdapter.View
             tvArtist = itemView.findViewById(R.id.tvComment);
             ivSongPoster = itemView.findViewById(R.id.ivSongPoster);
             container = itemView.findViewById(R.id.container);
+            lengthSong2 = itemView.findViewById(R.id.lengthSong2);
 
 
         }
@@ -78,6 +80,14 @@ public class FeedSongsAdapter extends RecyclerView.Adapter<FeedSongsAdapter.View
             tvSongTitle.setText(feedSong.getName());
             tvArtist.setText(feedSong.getArtist());
             imageSongUrl = feedSong.getImageUrl();
+
+            Integer minutes = (feedSong.getRelease()/1000/60);
+            String min = minutes.toString();
+            if (min.length()==1) min = '0'+min;
+            Integer seconds = (feedSong.getRelease()/1000)%60;
+            String sec = seconds.toString();
+            if (sec.length()==1) sec = '0'+sec;
+            lengthSong2.setText(min+":"+sec);
 
             Glide.with(context)
                     .load(imageSongUrl)
