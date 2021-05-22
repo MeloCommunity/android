@@ -77,16 +77,28 @@
         android:textSize="14sp"
         tools:text="Post Comment" />
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/tiComment"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/username_text_input_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/divider1"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="-15dp"
         android:layout_toEndOf="@+id/userImage"
-        android:hint="Add a public comment..."
-        android:textSize="14sp" />
+        app:boxBackgroundColor="#FFFFFF">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tiComment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/divider1"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="15dp"
+            android:layout_toEndOf="@+id/userImage"
+            android:hint="Add a public comment..."
+            android:textSize="14sp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <ImageView
         android:id="@+id/userImage"
@@ -119,5 +131,8 @@
         android:padding="0dp"  >
 
     </androidx.recyclerview.widget.RecyclerView>
+
+
+
 
 </RelativeLayout>
