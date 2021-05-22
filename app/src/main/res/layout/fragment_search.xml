@@ -1,20 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="8dp"
     tools:context=".fragments.SearchFragment">
 
     <EditText
         android:id="@+id/etSongName"
-        android:layout_width="330dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
         android:hint="Search a song..."
         android:inputType="textPersonName" />
+
+    <Button
+        android:id="@+id/btnSearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:backgroundTint="#DFDFDF"
+        android:textColor="?attr/colorControlNormal"
+        app:icon="?android:attr/actionModeWebSearchDrawable"
+        app:iconTint="?attr/colorControlNormal"
+        app:iconGravity="textStart"
+        app:iconPadding="0dp"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvPosts"
@@ -26,16 +38,6 @@
         android:layout_marginTop="5dp"
         android:padding="0dp" />
 
-    <Button
-        android:id="@+id/btnSearch"
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_toEndOf="@id/etSongName"
-        android:backgroundTint="#DFDFDF"
-        android:textColor="?attr/colorControlNormal"
-        app:icon="?android:attr/actionModeWebSearchDrawable"
-        app:iconTint="?attr/colorControlNormal" />
 </RelativeLayout>
 
 
