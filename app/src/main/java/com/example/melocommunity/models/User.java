@@ -8,6 +8,11 @@ public class User {
     public String country;
     public String display_name;
     public String email;
+
+    public String getId() {
+        return id;
+    }
+
     public String id;
     public String imageUrl;
     public ArrayList<FeedSongs> feedSongs;
@@ -15,5 +20,8 @@ public class User {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+    public void setId(String id) {
+        this.id = id;
     }
 }
