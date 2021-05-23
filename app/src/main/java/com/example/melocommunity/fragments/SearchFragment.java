@@ -90,17 +90,11 @@ public class SearchFragment extends Fragment {
         tvArtist = view.findViewById(R.id.tvComment);
         ivSongPoster = view.findViewById(R.id.ivSongPoster);
         etSongName = view.findViewById(R.id.etSongName);
-        btnSearch = view.findViewById(R.id.btnSearch);
         rvPosts = view.findViewById(R.id.rvPosts);
 
         SharedPreferences sharedPreferences = getContext().getSharedPreferences("SPOTIFY", 0);
 
-        btnSearch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getTracks();
-            }
-        });
+
 
 
         allFeedSongs = new ArrayList<>();

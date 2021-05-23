@@ -25,25 +25,13 @@
 
         <EditText
             android:id="@+id/etSongName"
-            android:layout_width="330dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="Search a song..."
             android:inputType="textPersonName" />
 
     </com.google.android.material.textfield.TextInputLayout>
-
-    <Button
-        android:id="@+id/btnSearch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:backgroundTint="#DFDFDF"
-        android:textColor="?attr/colorControlNormal"
-        app:icon="?android:attr/actionModeWebSearchDrawable"
-        app:iconTint="?attr/colorControlNormal"
-        app:iconGravity="textStart"
-        app:iconPadding="0dp"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvPosts"
@@ -54,18 +42,6 @@
         android:layout_marginStart="0dp"
         android:layout_marginTop="5dp"
         android:padding="0dp" />
-
-
-    <Button
-        android:id="@+id/btnSearch"
-        android:layout_width="46dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="-55dp"
-        android:layout_toEndOf="@id/username_text_input_layout"
-        android:backgroundTint="#DFDFDF"
-        android:textColor="?attr/colorControlNormal"
-        app:icon="?android:attr/actionModeWebSearchDrawable"
-        app:iconTint="?attr/colorControlNormal" />
 
 
 </RelativeLayout>

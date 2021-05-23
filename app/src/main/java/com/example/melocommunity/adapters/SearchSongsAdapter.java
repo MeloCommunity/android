@@ -2,6 +2,7 @@ package com.example.melocommunity.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,8 +24,8 @@ import java.util.List;
 
 public class SearchSongsAdapter extends RecyclerView.Adapter<SearchSongsAdapter.ViewHolder> {
 
-    private Context context;
-    private List<Song> searchSongs;
+    private final Context context;
+    private final List<Song> searchSongs;
 
     public SearchSongsAdapter(Context context, List<Song> searchSongs) {
         this.context = context;
@@ -51,11 +52,13 @@ public class SearchSongsAdapter extends RecyclerView.Adapter<SearchSongsAdapter.
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
-        private RelativeLayout container;
-        private TextView tvSongTitle;
-        private TextView tvArtist;
+        private final RelativeLayout container;
+        private final TextView tvSongTitle;
+        private final TextView tvArtist;
 
-        private ImageView ivSongPoster;
+        private final ImageView ivSongPoster;
+        private final TextView lengthSong2;
+
 
         String imageSongUrl;
 
@@ -68,6 +71,7 @@ public class SearchSongsAdapter extends RecyclerView.Adapter<SearchSongsAdapter.
             tvArtist = itemView.findViewById(R.id.tvComment);
             ivSongPoster = itemView.findViewById(R.id.ivSongPoster);
             container = itemView.findViewById(R.id.container);
+            lengthSong2 = itemView.findViewById(R.id.lengthSong2);
 
         }
 
@@ -77,6 +81,14 @@ public class SearchSongsAdapter extends RecyclerView.Adapter<SearchSongsAdapter.
             tvSongTitle.setText(feedSong.getName());
             tvArtist.setText(feedSong.getArtist());
             imageSongUrl = feedSong.getImageUrl();
+
+            Integer minutes = (feedSong.getRelease()/1000/60);
+            String min = minutes.toString();
+            if (min.length()==1) min = '0'+min;
+            Integer seconds = (feedSong.getRelease()/1000)%60;
+            String sec = seconds.toString();
+            if (sec.length()==1) sec = '0'+sec;
+            lengthSong2.setText(min+":"+sec);
 
             Glide.with(context)
                     .load(imageSongUrl)
