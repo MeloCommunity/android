@@ -49,11 +49,9 @@ public class DetailActivity extends AppCompatActivity {
     ImageView userImage;
     Button btnPost;
     EditText etDescription;
-    ImageButton play;
-
+    private ImageView btnDelete;
     String userName;
-
-    // item_comment
+    String userID;
 
 
     private RecyclerView rvComments;
@@ -74,6 +72,7 @@ public class DetailActivity extends AppCompatActivity {
         btnPost = findViewById(R.id.btnPost);
         etDescription = findViewById(R.id.tiComment);
         lengthSong = findViewById(R.id.lengthSong);
+        btnDelete = findViewById(R.id.btnDelete);
 
 
 
@@ -96,6 +95,8 @@ public class DetailActivity extends AppCompatActivity {
         // Load User Image
         SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("SPOTIFY", 0);
         String userUrl = sharedPreferences.getString("imageUrl", "No User");
+        userID = (sharedPreferences.getString("userid", "No User"));
+
         Integer minutes = (song.getRelease()/1000/60);
         String min = minutes.toString();
         if (min.length()==1) min = '0'+min;
@@ -134,6 +135,7 @@ public class DetailActivity extends AppCompatActivity {
         rvComments.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         queryComments(song.getId());
 
+
         //On click that sends the information to postComment
         btnPost.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -144,7 +146,7 @@ public class DetailActivity extends AppCompatActivity {
                     return;
                 }
                 Log.d("CHECKING", userName + " " + userUrl);
-                postComment(description, userName, userUrl, song.getId());
+                postComment(description, userName, userUrl, song.getId(), userID);
             }
         });
 
@@ -167,18 +169,19 @@ public class DetailActivity extends AppCompatActivity {
                 }
 
                 for (Comment comment : comments) {
+
                     Log.i(TAG, "Comment: " + comment.getDescription() + ", username: " + comment.getUserName());
                 }
                 allComments.addAll(comments);
                 commentsAdapter.notifyDataSetChanged();
-
             }
         });
     }
 
-    private void postComment(String description, String userName, String userImageUrl, String songID) {
+    private void postComment(String description, String userName, String userImageUrl, String songID, String userID) {
         Comment comment = new Comment();
         comment.setSongID(songID);
+        comment.setUserID(userID);
         comment.setDescription(description);
         comment.setUserName(userName);
         comment.setUserImageUrl(userImageUrl);

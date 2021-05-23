@@ -14,15 +14,26 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.BaseRequestOptions;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.melocommunity.Connectors.SongService;
 import com.example.melocommunity.R;
+import com.example.melocommunity.adapters.CommentsAdapter;
+import com.example.melocommunity.models.Comment;
 import com.example.melocommunity.models.Song;
 import java.util.ArrayList;
 import com.example.melocommunity.adapters.FeedSongsAdapter;
+import com.parse.FindCallback;
+import com.parse.ParseException;
+import com.parse.ParseQuery;
 import com.spotify.android.appremote.api.SpotifyAppRemote;
 
 import java.util.List;
@@ -50,6 +61,17 @@ public class FeedFragment extends Fragment {
     private RecyclerView rvPosts;
     private FeedSongsAdapter feedSongsAdapter;
     private List<Song> allFeedSongs;
+
+    private RecyclerView rvComments;
+
+    private CommentsAdapter commentsAdapter;
+    private List<Comment> allComments;
+
+    private ImageView userImage3;
+    private Button btnPost3;
+    private EditText etDescription;
+    private String userName;
+
 
 
     public FeedFragment() {
@@ -79,12 +101,11 @@ public class FeedFragment extends Fragment {
         tvArtist = view.findViewById(R.id.tvComment);
         ivSongPoster = view.findViewById(R.id.ivSongPoster);
         rvPosts = view.findViewById(R.id.rvPosts);
-
-
-        SharedPreferences sharedPreferences = getContext().getSharedPreferences("SPOTIFY", 0);
+        btnPost3 = view.findViewById(R.id.btnPost3);
+        userImage3 = view.findViewById(R.id.userImage3);
+        etDescription = view.findViewById(R.id.tiComment);
 
         getTracks();
-
 
         allFeedSongs = new ArrayList<>();
         feedSongsAdapter = new FeedSongsAdapter(getContext(), allFeedSongs);
@@ -97,8 +118,6 @@ public class FeedFragment extends Fragment {
         rvPosts.setAdapter(feedSongsAdapter);
         // 4. set the layout manager on the recycler view
         rvPosts.setLayoutManager(new LinearLayoutManager(getContext()));
-
-
     }
 
     private void getTracks() {

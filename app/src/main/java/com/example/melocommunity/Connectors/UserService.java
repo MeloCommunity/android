@@ -38,10 +38,13 @@ public class UserService {
             user = gson.fromJson(response.toString(), User.class);
             JSONArray jsonArray  = response.optJSONArray("images");
             String url = null;
+            String id = null;
             JSONObject object = null;
             try {
                 url = jsonArray.getJSONObject(0).getString("url");
                 user.setImageUrl(url);
+                id = jsonArray.getJSONObject(0).getString("id");
+                user.setId(id);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
