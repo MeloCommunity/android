@@ -143,6 +143,9 @@ An app that builds on the basic spotify to add comment functionality to songs. U
     `GET`    | /playlists | query all posts from liked songs by user 
     `GET`    | /me   | query logged in user object
     `GET`    | /artists/{id}	 |  query artists information
+    
+## Logo
+<div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
 
 ## Walkthrough
 

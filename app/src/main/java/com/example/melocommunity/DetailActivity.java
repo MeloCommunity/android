@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,6 +29,7 @@ import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
+import com.spotify.android.appremote.api.SpotifyAppRemote;
 
 import org.parceler.Parcels;
 
@@ -41,16 +43,18 @@ public class DetailActivity extends AppCompatActivity {
 
     TextView tvSongTitle;
     TextView tvArtist;
+    TextView lengthSong;
     ImageView ivSongPoster;
     String imageSongUrl;
     ImageView userImage;
     Button btnPost;
     EditText etDescription;
+    ImageButton play;
+
+    String userName;
 
     // item_comment
-    private TextView tvUserName;
-    private TextView tvComment;
-    private ImageView ivUserImage;
+
 
     private RecyclerView rvComments;
 
@@ -69,6 +73,8 @@ public class DetailActivity extends AppCompatActivity {
         ivSongPoster = findViewById(R.id.ivSongPoster);
         btnPost = findViewById(R.id.btnPost);
         etDescription = findViewById(R.id.tiComment);
+        lengthSong = findViewById(R.id.lengthSong);
+
 
 
 
@@ -90,6 +96,13 @@ public class DetailActivity extends AppCompatActivity {
         // Load User Image
         SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("SPOTIFY", 0);
         String userUrl = sharedPreferences.getString("imageUrl", "No User");
+        Integer minutes = (song.getRelease()/1000/60);
+        String min = minutes.toString();
+        if (min.length()==1) min = '0'+min;
+        Integer seconds = (song.getRelease()/1000)%60;
+        String sec = seconds.toString();
+        if (sec.length()==1) sec = '0'+sec;
+        lengthSong.setText(min+":"+sec);
 
         RequestOptions options = new RequestOptions()
                 .centerCrop()
@@ -103,11 +116,9 @@ public class DetailActivity extends AppCompatActivity {
 
 
         // item comment in rvComments
-        tvUserName = findViewById(R.id.tvUserName);
-        tvUserName.setText(sharedPreferences.getString("display_name", "No User"));
 
-        tvComment = findViewById(R.id.tvComment);
-        ivUserImage = findViewById(R.id.ivUserImage);
+        userName = (sharedPreferences.getString("display_name", "No User"));
+
         rvComments = findViewById(R.id.rvComments);
 
         allComments = new ArrayList<>();
@@ -132,10 +143,12 @@ public class DetailActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Description cannot be empty", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                Log.d("CHECKING", tvUserName.getText().toString() + " " + userUrl);
-                postComment(description, tvUserName.getText().toString(), userUrl, song.getId());
+                Log.d("CHECKING", userName + " " + userUrl);
+                postComment(description, userName, userUrl, song.getId());
             }
         });
+
+
 
     }
     protected void queryComments(String id) {
@@ -173,6 +186,7 @@ public class DetailActivity extends AppCompatActivity {
             if (e==null){
                 allComments.add(comment);
                 commentsAdapter.notifyDataSetChanged();
+                etDescription.setText("");
                 //Save was done
             }else{
                 //Something went wrong

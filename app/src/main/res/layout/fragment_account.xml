@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="27dp"
+        android:layout_marginTop="10dp"
         android:fontFamily="sans-serif-condensed-light"
         android:lineSpacingExtra="8sp"
         android:text="first last"
@@ -31,51 +31,19 @@
 
     <ImageView
         android:id="@+id/imageProfile"
-        android:layout_width="296dp"
-        android:layout_height="205dp"
-        android:layout_alignParentTop="true"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_below="@+id/user"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="88dp"
+        android:layout_marginTop="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/user"
 
+        app:layout_constraintTop_toBottomOf="@+id/user"
         tools:srcCompat="@tools:sample/avatars" />
 
-    <TextView
-        android:id="@+id/song"
-        android:layout_width="203dp"
-        android:layout_height="167dp"
-        android:layout_below="@+id/imageProfile"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="55dp"
-        android:layout_marginTop="6dp"
-        android:textAlignment="center"
-        android:textColor="#000000"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/add"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageProfile"
-        app:layout_constraintVertical_bias="0.772" />
-
-    <ImageView
-        android:id="@+id/imageSong"
-        android:layout_width="134dp"
-        android:layout_height="168dp"
-        android:layout_alignTop="@+id/song"
-        android:layout_alignBottom="@+id/song"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="6dp"
-        android:layout_marginTop="-3dp"
-        android:layout_marginEnd="13dp"
-        android:layout_marginBottom="2dp"
-        android:layout_toEndOf="@+id/song"
-        tools:src="@tools:sample/avatars" />
-
-<!--    <Button-->
+    <!--    <Button-->
 <!--        android:id="@+id/add"-->
 <!--        android:layout_width="315dp"-->
 <!--        android:layout_height="73dp"-->

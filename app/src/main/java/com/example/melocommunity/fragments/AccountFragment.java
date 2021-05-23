@@ -68,10 +68,8 @@ public class AccountFragment extends Fragment {
 
         songService = new SongService(getContext().getApplicationContext());
         userView = view.findViewById(R.id.user);
-        songView = view.findViewById(R.id.song);
         //addBtn = view.findViewById(R.id.add);
         imageProfile = view.findViewById(R.id.imageProfile);
-        imageSong = view.findViewById(R.id.imageSong);
 
 
         SharedPreferences sharedPreferences = getContext().getSharedPreferences("SPOTIFY", 0);

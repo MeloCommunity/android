@@ -11,6 +11,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -27,6 +29,8 @@ import com.example.melocommunity.Connectors.SongService;
 import com.example.melocommunity.R;
 import com.example.melocommunity.adapters.SearchSongsAdapter;
 import com.example.melocommunity.models.Song;
+import com.google.android.material.textfield.TextInputLayout;
+
 import java.util.ArrayList;
 
 import java.util.List;
@@ -113,22 +117,44 @@ public class SearchFragment extends Fragment {
 
         //queryPosts() not implemented yet
 
+
+
+        etSongName.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                getTracks();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+
+        // Modify Search to get show results instantly
     }
 
+        private void getTracks () {
 
-    private void getTracks() {
 
-        if (!allFeedSongs.isEmpty()){
-            searchTracks.clear();
-            allFeedSongs.clear();
+            if (!allFeedSongs.isEmpty()) {
+                searchTracks.clear();
+                allFeedSongs.clear();
+            }
+
+            songService.getSearchTracks(() -> {
+                searchTracks = songService.getSongs();
+                allFeedSongs.addAll(searchTracks);
+                searchSongsAdapter.notifyDataSetChanged();
+                Log.i(TAG, "SEARCH: " + allFeedSongs);
+
+            }, etSongName.getText().toString());
         }
-
-        songService.getSearchTracks(() -> {
-            searchTracks = songService.getSongs();
-            allFeedSongs.addAll(searchTracks);
-            searchSongsAdapter.notifyDataSetChanged();
-            Log.i(TAG, "SEARCH: " + allFeedSongs );
-
-        }, etSongName.getText().toString());
     }
-}
+
