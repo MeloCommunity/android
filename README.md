@@ -9,7 +9,7 @@
 
 ## Overview
 ### Description
-An app that builds on the basic spotify to add comment functionality to songs. Users can login and post comments on songs, read and reply to comments of other users. It gives people a way to interact and connect over songs.
+Combining Spotify, Instagram, and Reddit, MeloCommunity is a platform for music lovers. Users log in with thier Spotify accounts and they can control the music through the app, read and post comments on their top played songs, and search for new songs and see what people think of them. MeloCommunity provides people a way to interact and connect through music.
 
 ### App Evaluation
 - **Category**: Music, Entertainment, Forums, Social Networking
@@ -17,7 +17,7 @@ An app that builds on the basic spotify to add comment functionality to songs. U
 - **Story**: Creates a post out of a song that is the centerpiece for discussion.
 - **Market**: Spotify and other music enthusiasts that want to discuss music with a community.
 - **Habit**: Users are using this whenever they are introduced to a new song or are passionate about a song they heard.
-- **Scope**: V1 Allow users to search and view a song post in detail that has likes and a comment section for discussion. V2 Would include verified arist accounts.
+- **Scope**: V1 Allow users to search and view a song post in detail that has a comment section for discussion. V2 Would include verified arist accounts.
 
 ## Product Spec
 
@@ -26,109 +26,111 @@ An app that builds on the basic spotify to add comment functionality to songs. U
 **Required Must-have Stories**
 
 * [x] As a user I should be able to log into my spotify account
-* [x] As a user I should be able to see a feed of posts
+* [x] As a user I should be able to see a feed of songs
+* [x] As a user I should see currently playing/last played song's title
+* [x] As a user I should see currently playing/last played song's image
 * [x] As a user I should be able to play a song
+* [x] As a user I should be able to pause a song
+* [x] As a user I should be able to play next and previous songs
 * [x] As a user I should be able to add a song to my personal library
-* As a user I should be able to comment on a post
-* As a user I should be able to see comments on a post
-
-
-
+* [x] As a user I should be able to see comments on a post
+* [x] As a user I should be able to comment on a post
 
 **Optional Nice-to-have Stories**
 
-* As a user I should be able to share a post
-* As a user I should be able to private/public my profile
-* As a user I should be able to view my own profile
+* [x] As a user I should be able to view my own profile
 * [x] As a user I should be able to search a song
+* [x] As a user I should be able to delete my own comments
+* [ ] As a user I should be able to edit my own comments
+* [ ] As a user I should be able to play a song I searched
+* [ ] As a user I should be able to play a song directly from the feed screen
+* [ ] As a user I should be able to play a song directly from the detail screen
+* [ ] As a user I should be able to play a click currently playing song and get to it's detail screen
+
 
 ### 2. Screen Archetypes
 * Splash Screen
-   * As a user I should be able to log into my spotify account
+   * As a user I should be able to log in to my spotify account
 * Feed Screen
-   * As a user I should be able to see a feed of posts, to play a song, add a song to my personal library, to comment on a post, see comments on a post.
+   * As a user I should be able to see a feed of posts, play/pause/skip songs, add a song to my personal library,  comment on a post, see comments on a post, and delete commetns.
 * Account Screen
-   * As a user I should be able to see my personal information 
+   * As a user I should be able to see my personal information that includes my displayed name and profile picture.
+* Search Screen
+   * As a user I should be able to search songs with live results (like google search), see their comments, comment and delete commetns of my own.
 
 ### 3. Navigation
 
 **Tab Navigation** (Tab to Screen)
 
-* Home Feed
 * Account
-* Search (Stretch feature)
+* Feed
+* Search
 
 **Flow Navigation** (Screen to Screen)
 
 * Splash
    => Login
 * Login
-   => Account Screen
-* Account Screen
+   => Account 
+* Account 
    => Feed 
-   => Search (Stretch)
-   => Settings (Stretch)
-* Feed 
-   => Detail (Stretch)
+* Account 
+   => Search 
+* Feed
+   => Detail
+* Search
+   => Detail
 
 ## Wireframes
-<img src="https://user-images.githubusercontent.com/32282010/113899803-2ae04d00-979b-11eb-8b50-0608145a7f3d.png" width=600>
-
-### [BONUS] Digital Wireframes & Mockups
-#### Digital Wireframe
 <img src="https://user-images.githubusercontent.com/32282010/113899803-2ae04d00-979b-11eb-8b50-0608145a7f3d.png" width=600>
 
 ### [BONUS] Interactive Prototype
 
 ## Schema 
 ### Models
-#### Account
+#### User
  | Property      | Type     | Description |
    | ------------- | -------- | ------------|
-   | userID      | String   | taken from spotify account user id |
-   | image         | Image     | image of user taken from spotify |
-   | liked songs       | Arraylist of Posts   | list of liked posts/songs taken from the user |
+   | userId      | String   | user's Spotify id  |
+   | image         | Image     | user's Spotify profile picture |
+   | top songs       | Arraylist of Songs   | list of user's top played songs |
    
-#### Post
+#### Song
  | Property      | Type     | Description |
    | ------------- | -------- | ------------|
-   | songID      | String   | from spotify |
+   | songId      | String   | song's id  |
    | nameSong         | String     |  name of song |
    | nameArtist     | String  | name of artist |
-   | nameAlbum      | String   | name of album |
    | image         | Image     |  image of song/album |
    | comments     |  Arraylist of Comments  | comments on this specific song |
-   | streamsCount     |  Integer |  number of streams (if available on the api) |
    | createdAt     |  DateTime  |  date song was created at |
 
-#### Artist 
- | Property      | Type     | Description |
-   | ------------- | -------- | ------------|
-   | artistID      | String   | artists id from spotify |
-   | name         | String     | name of artist |
-   | image     | Image  |  image of artist |
-   | feed      | Array of Posts   | taken from spotify |
-   | biography         | String     |  from spotify |
-   | monthlyListener     |  Integer |  from spotify |
    
 #### Comment 
  | Property      | Type     | Description |
    | ------------- | -------- | ------------|
-   | songId      | String   | what song is it about |
+   | songId      | String   | song's Id |
    | commentId         | String     | comment’s unique id |
-   | userId     | String  |  user who left the comment |
+   | userId     | String  |  the id of the user who left the comment |
    | createdAt      | DateTime  | time comment was posted |
-   | description         | Text     |  the actual comment  |
+   | description         | Text     |  the actual comment's text  |
    
    
 ### Networking
 #### List of network requests by screen
-  - Home Feed Screen
-    - (Read/GET) Query all posts from liked songs by user 
+
   - Profile screen
     - (Read/GET) Query logged in user object
-  - Artists screen
-    - (Read/GET) Query artists information
+  - Feed Screen
+    - (Read/GET) Query top played songs of user 
+    - (Read/GET) Query commetns of each song
+    - (Create/POST) Create a new comment on a song
+    - (Delete) Delete an existing comment by user
+  - Search Screen
+    - (Read/GET) Query searched songs by input
+    - (Read/GET) Query commetns of each song that was found
+    - (Create/POST) Create a new comment on a song
+    - (Delete) Delete an existing comment by user
   - Detail Screen
     - (Create/POST) Create a new comment on a post/song
     - (Update/PUT) Edit an existing comment
@@ -136,13 +138,16 @@ An app that builds on the basic spotify to add comment functionality to songs. U
     
 #### [OPTIONAL:] Existing API Endpoints
 ##### Spotify API
-- Base URL - [https://github.com/kaaes/spotify-web-api-android](https://github.com/kaaes/spotify-web-api-android)
+- Base URL - [https://api.spotify.com/v1/] 
 
    HTTP Verb | Endpoint | Description
    ----------|----------|------------
-    `GET`    | /playlists | query all posts from liked songs by user 
+    `GET`    | /tracks | query all top songs of the user 
     `GET`    | /me   | query logged in user object
-    `GET`    | /artists/{id}	 |  query artists information
+    `GET`    | /me/player/currently-playing   | query currently played song
+    `GET`    | /me/player/recently-playing   | query recently played song
+    `GET`    | /search/	 |  query tracks by keywords
+
     
 ## Logo
 <div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
