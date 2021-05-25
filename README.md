@@ -150,7 +150,7 @@ Combining Spotify, Instagram, and Reddit, MeloCommunity is a platform for music 
 
     
 ## Logo
-<div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+<img src='https://github.com/MeloCommunity/android/blob/main/app/src/main/ic_launcher-playstore.png' title='Logo' width= '50px'/>
 
 ## Walkthrough
 
