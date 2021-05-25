@@ -9,7 +9,7 @@
 
 ## Overview
 ### Description
-Combining Spotify, Instagram, and Reddit, MeloCommunity is a platform for music lovers. Users log in with thier Spotify accounts and they can control the music through the app, read and post comments on their top played songs, and search for new songs and see what people think of them. MeloCommunity provides people a way to interact and connect through music.
+Combining Spotify, Instagram, and Reddit, MeloCommunity is a platform for music lovers. Users log in with their Spotify accounts and they can control the music through the app, read and post comments on their top played songs, and search for new songs and see what people think of them. MeloCommunity provides people a way to interact and connect through music.
 
 ### App Evaluation
 - **Category**: Music, Entertainment, Forums, Social Networking
