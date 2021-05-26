@@ -82,7 +82,7 @@ Combining Spotify, Instagram, and Reddit, MeloCommunity is a platform for music 
    => Detail
 
 ## Wireframes
-<img src="https://user-images.githubusercontent.com/32282010/113899803-2ae04d00-979b-11eb-8b50-0608145a7f3d.png" width=600>
+<img src="https://user-images.githubusercontent.com/43976085/119586242-47136a00-bd9a-11eb-9e07-675f087d6def.png" width=600>
 
 ## Schema 
 ### Models
