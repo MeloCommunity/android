@@ -1,5 +1,6 @@
 package com.example.melocommunity.fragments;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -25,6 +26,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.BaseRequestOptions;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.melocommunity.Connectors.SongService;
+import com.example.melocommunity.MainActivity;
 import com.example.melocommunity.R;
 import com.example.melocommunity.adapters.CommentsAdapter;
 import com.example.melocommunity.models.Comment;
@@ -67,11 +69,10 @@ public class FeedFragment extends Fragment {
     private CommentsAdapter commentsAdapter;
     private List<Comment> allComments;
 
-    private ImageView userImage3;
     private Button btnPost3;
+    private Button btnPlay;
     private EditText etDescription;
     private String userName;
-
 
 
     public FeedFragment() {
@@ -102,7 +103,7 @@ public class FeedFragment extends Fragment {
         ivSongPoster = view.findViewById(R.id.ivSongPoster);
         rvPosts = view.findViewById(R.id.rvPosts);
         btnPost3 = view.findViewById(R.id.btnPost3);
-        userImage3 = view.findViewById(R.id.userImage3);
+        btnPlay = view.findViewById(R.id.btnPlay);
         etDescription = view.findViewById(R.id.tiComment);
 
         getTracks();
@@ -118,7 +119,10 @@ public class FeedFragment extends Fragment {
         rvPosts.setAdapter(feedSongsAdapter);
         // 4. set the layout manager on the recycler view
         rvPosts.setLayoutManager(new LinearLayoutManager(getContext()));
+
+
     }
+
 
     private void getTracks() {
 

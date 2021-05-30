@@ -51,6 +51,7 @@ public class SongService {
                     JSONObject object = response.optJSONObject("item");
                     String artist="";
                     String imageUrl="";
+                    song = gson.fromJson(object.toString(), Song.class);
 
                     try {
                         JSONArray arrayArtists = object.getJSONArray("artists");
@@ -60,10 +61,10 @@ public class SongService {
                         //imageUrl = arrayImages.getJSONObject(0).getString("url");
                         song.setArtist(artist);
                         //song.setImageUrl(imageUrl);
+
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-                    song = gson.fromJson(object.toString(), Song.class);
 
 
                     callBack.onSuccess();
@@ -201,7 +202,6 @@ public class SongService {
         queue.add(jsonObjectRequest);
         return songs;
     }
-
 
 
     public ArrayList<Song> getSearchTracks(final UserService.VolleyCallBack callBack, String songName) {

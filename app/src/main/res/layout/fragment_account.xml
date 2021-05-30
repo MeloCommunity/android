@@ -14,10 +14,11 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
-        android:fontFamily="sans-serif-condensed-light"
+        android:fontFamily="casual"
         android:lineSpacingExtra="8sp"
         android:text="first last"
         android:textAlignment="center"
+        android:textAllCaps="false"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColor="#000000"
         android:textSize="36sp"
@@ -38,20 +39,38 @@
         android:layout_marginTop="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
+        android:background="#000000"
+        android:padding="1dp"
         app:layout_constraintStart_toStartOf="parent"
-
         app:layout_constraintTop_toBottomOf="@+id/user"
         tools:srcCompat="@tools:sample/avatars" />
 
-    <!--    <Button-->
-<!--        android:id="@+id/add"-->
-<!--        android:layout_width="315dp"-->
-<!--        android:layout_height="73dp"-->
-<!--        android:layout_alignParentBottom="true"-->
-<!--        android:layout_centerHorizontal="true"-->
-<!--        android:layout_marginBottom="20dp"-->
-<!--        android:text="Add to liked songs"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.497" />-->
+    <TextView
+        android:id="@+id/email"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="47dp"
+        android:layout_marginTop="310dp"
+        android:text="TextView"
+        android:textColor="@color/purple_700"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/country"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/email"
+        android:layout_alignStart="@+id/email"
+        android:layout_alignEnd="@+id/email"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="11dp"
+        android:layout_marginEnd="0dp"
+        android:text="TextView"
+        android:textColor="#673AB7"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
 </RelativeLayout>
