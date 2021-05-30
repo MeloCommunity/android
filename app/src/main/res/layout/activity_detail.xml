@@ -5,18 +5,57 @@
 
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="5dp"
     android:orientation="vertical">
 
+
+    <ImageView
+        android:id="@+id/songImage"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/currentSong"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/songImage"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="0dp"
+        android:layout_toEndOf="@+id/songImage"
+        android:background="#79E3E0E0"
+        android:elegantTextHeight="true"
+        android:lineSpacingExtra="8sp"
+        android:padding="2dp"
+        android:rotationX="0"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        app:autoSizeTextType="uniform" />
+
+    <Button
+        android:id="@+id/btnPlay"
+        android:layout_width="73dp"
+        android:layout_height="40dp"
+        android:layout_alignBottom="@+id/ivSongPoster"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="0dp"
+        android:backgroundTint="#DFDFDF"
+        android:text="Play"
+        android:textColor="?attr/colorControlNormal"
+        android:textSize="12sp" />
 
     <ImageView
         android:id="@+id/ivSongPoster"
         android:layout_width="140dp"
         android:layout_height="140dp"
+        android:layout_below="@+id/songImage"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
         android:layout_marginStart="0dp"
-        android:layout_marginTop="0dp"
         tools:src="@tools:sample/avatars" />
 
 
@@ -35,8 +74,8 @@
         android:id="@+id/tvUserName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/currentSong"
         android:layout_alignParentStart="false"
-        android:layout_alignParentTop="true"
         android:layout_marginStart="5dp"
         android:layout_toEndOf="@id/ivSongPoster"
         android:textColor="#000000"
@@ -60,7 +99,6 @@
         android:layout_width="match_parent"
         android:layout_height="5dp"
         android:layout_below="@+id/ivSongPoster"
-        android:layout_marginTop="5dp"
         android:background="?android:attr/listDivider"
         android:backgroundTint="#787878"
         android:foregroundTint="#787878" />
@@ -69,8 +107,7 @@
         android:id="@+id/btnPost"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/userImage"
-        android:layout_marginTop="5dp"
+        android:layout_below="@+id/username_text_input_layout"
         android:backgroundTint="#DFDFDF"
         android:text="Post Comment"
         android:textColor="?attr/colorControlNormal"
@@ -82,53 +119,30 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/divider1"
+        android:layout_alignParentStart="true"
         android:layout_marginStart="0dp"
-        android:layout_marginTop="-15dp"
-        android:layout_toEndOf="@+id/userImage"
+        android:layout_marginLeft="0dp"
+        android:hint="Add a comment"
+        android:paddingLeft="0dp"
         app:boxBackgroundColor="#FFFFFF">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/tiComment"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/divider1"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="15dp"
-            android:layout_toEndOf="@+id/userImage"
-            android:hint="Add a public comment..."
+            android:layout_height="match_parent"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="-10dp"
             android:textSize="14sp" />
 
     </com.google.android.material.textfield.TextInputLayout>
-
-    <ImageView
-        android:id="@+id/userImage"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
-        android:layout_below="@+id/divider1"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="5dp"
-        tools:srcCompat="@tools:sample/avatars" />
-
-    <View
-        android:id="@+id/divider"
-        android:layout_width="match_parent"
-        android:layout_height="5dp"
-        android:layout_below="@+id/btnPost"
-        android:layout_marginTop="5dp"
-        android:background="?android:attr/listDivider"
-        android:backgroundTint="#787878"
-        android:foregroundTint="#787878" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvComments"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/divider"
+        android:layout_below="@+id/btnPost"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="10dp"
-        android:padding="0dp"  >
+        >
 
     </androidx.recyclerview.widget.RecyclerView>
 

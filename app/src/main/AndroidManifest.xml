@@ -13,7 +13,7 @@
         android:name=".models.ParseApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="melФ"
+        android:label="MELO"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MeloCommunity">

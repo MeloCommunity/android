@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -15,16 +16,19 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
+import com.example.melocommunity.Connectors.SongService;
 import com.example.melocommunity.Connectors.UserService;
 import com.example.melocommunity.fragments.AccountFragment;
 import com.example.melocommunity.fragments.FeedFragment;
 import com.example.melocommunity.fragments.SearchFragment;
+import com.example.melocommunity.models.Song;
 import com.example.melocommunity.models.User;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.spotify.android.appremote.api.ConnectionParams;
@@ -34,6 +38,8 @@ import com.spotify.protocol.types.Track;
 import com.spotify.sdk.android.authentication.AuthenticationClient;
 import com.spotify.sdk.android.authentication.AuthenticationRequest;
 import com.spotify.sdk.android.authentication.AuthenticationResponse;
+
+import org.parceler.Parcels;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -54,8 +60,12 @@ public class MainActivity extends AppCompatActivity {
     private SpotifyAppRemote mSpotifyAppRemote;
     private int stateDrawPlayPause = 1;
     private int stateLikeButton = 1;
-    private String trackId = null;
+    private String trackId = "";
 
+    Context context;
+    private SongService songService;
+
+    public static final String TAG="MainActivity";
 
 
     @Override
@@ -102,6 +112,7 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -237,6 +248,7 @@ public class MainActivity extends AppCompatActivity {
         ImageView songImage = findViewById(R.id.songImage);
         View likeButton = findViewById(R.id.action_like);
         TextView playing = findViewById(R.id.currentSong);
+        
         // Subscribe to PlayerState
         mSpotifyAppRemote.getPlayerApi()
                 .subscribeToPlayerState()
@@ -244,11 +256,12 @@ public class MainActivity extends AppCompatActivity {
                     final Track track = playerState.track;
                     if (track != null) {
                         trackId = track.uri;
-                        playing.setText(track.name + "\n" + track.artist.name);
                         mSpotifyAppRemote.getImagesApi().getImage(track.imageUri).setResultCallback(bitmap -> {
                             Glide.with(this)
                                     .load(bitmap)
+                                    .placeholder(songImage.getDrawable())
                                     .into(songImage);
+                            playing.setText(track.name + "\n" + track.artist.name);
                         });
                     }
                     if (playerState.isPaused) {
@@ -270,6 +283,8 @@ public class MainActivity extends AppCompatActivity {
                             stateLikeButton = 0;
                         }
                     });
+
+
                 });
     }
 }

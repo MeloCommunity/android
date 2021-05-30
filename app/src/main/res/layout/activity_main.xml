@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="10dp"
     android:layout_marginLeft="0dp"
     android:orientation="vertical"
     tools:context=".MainActivity">
@@ -42,7 +41,6 @@
         android:lineSpacingExtra="8sp"
         android:padding="2dp"
         android:rotationX="0"
-        android:text="Currently Playing"
         android:textAlignment="center"
         android:textColor="#000000"
         android:textStyle="bold"
