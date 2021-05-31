@@ -2,7 +2,6 @@ package com.example.melocommunity.fragments;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -17,14 +16,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.BaseRequestOptions;
-import com.bumptech.glide.request.RequestOptions;
 import com.example.melocommunity.Connectors.SongService;
 import com.example.melocommunity.MainActivity;
 import com.example.melocommunity.R;
@@ -33,10 +27,6 @@ import com.example.melocommunity.models.Comment;
 import com.example.melocommunity.models.Song;
 import java.util.ArrayList;
 import com.example.melocommunity.adapters.FeedSongsAdapter;
-import com.parse.FindCallback;
-import com.parse.ParseException;
-import com.parse.ParseQuery;
-import com.spotify.android.appremote.api.SpotifyAppRemote;
 
 import java.util.List;
 

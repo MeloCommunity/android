@@ -1,16 +1,15 @@
 package com.example.melocommunity.adapters;
 
+import android.app.AlertDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageButton;
+import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,14 +18,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
-import com.example.melocommunity.DetailActivity;
 import com.example.melocommunity.R;
 import com.example.melocommunity.models.Comment;
-import com.example.melocommunity.models.Song;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
-
-import org.parceler.Parcels;
 
 import java.util.List;
 
@@ -71,6 +66,12 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.ViewHo
         String imageUserUrl;
 
         ImageView btnDelete;
+        ImageView btnEdit;
+
+        // Views inside the edit alert dialog
+        EditText etEditComment;
+        Button btnPostEdit;
+        Button btnCancelEdit;
         String userID;
 
 
@@ -82,6 +83,7 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.ViewHo
             tvComment = itemView.findViewById(R.id.tvComment);
             ivUserImage = itemView.findViewById(R.id.ivUserImage);
             btnDelete = itemView.findViewById(R.id.btnDelete);
+            btnEdit = itemView.findViewById(R.id.btnEdit);
             SharedPreferences sharedPreferences = context.getApplicationContext().getSharedPreferences("SPOTIFY", 0);
 
             userID = (sharedPreferences.getString("userid", "No User"));
@@ -91,6 +93,7 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.ViewHo
         public void bind(Comment comment) {
             if (comment.getUserID().equals(userID)) {
                 btnDelete.setVisibility(View.VISIBLE);
+                btnEdit.setVisibility(View.VISIBLE);
             }
             // Bind the post data to the view elements
             //ivImage.
@@ -142,8 +145,74 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.ViewHo
 
             });
 
+            btnEdit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+                    alertDialogBuilder.setTitle("Edit Comment");
+                    alertDialogBuilder.setCancelable(true);
+                    //We are setting our custom popup view by AlertDialog.Builder
+                    LayoutInflater inflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
+                    View dialogView = inflater.inflate(R.layout.edit_alert_dialogbox, null);
+                    alertDialogBuilder.setView(dialogView);
+                    etEditComment = dialogView.findViewById(R.id.etEditComment);
+                    btnPostEdit = dialogView.findViewById(R.id.btnPostEdit);
+                    btnCancelEdit = dialogView.findViewById(R.id.btnCancelEdit);
+                    etEditComment.setText(comment.getDescription());
+
+                    final AlertDialog alertDialog = alertDialogBuilder.create();
+                    alertDialog.show();
+
+                    btnPostEdit.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if (etEditComment.getText().toString().isEmpty()){
+                                Toast.makeText(context, "Cannot post empty comment", Toast.LENGTH_SHORT).show();
+                            }
+                            else {
+                                SaveEdit(etEditComment.getText().toString());
+                                alertDialog.cancel();
+                                notifyDataSetChanged();
+                            }
+                        }
+                    });
+
+                    btnCancelEdit.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            alertDialog.cancel();
+                        }
+                    });
+
+
+                }
+
+                private void SaveEdit(String newDescription) {
+                    if (comment.getUserID().equals(userID)){
+                        ParseQuery<ParseObject> query = ParseQuery.getQuery("Comment");
+
+                        // Retrieve the object by id
+                        query.getInBackground(comment.getObjectId(), (object, e) -> {
+                            if (e == null) {
+                                // Update the fields we want to
+                                object.put("description", newDescription);
+
+                                // All other fields will remain the same
+                                object.saveInBackground();
+
+                            } else {
+                                // something went wrong
+                                Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+                }
+            });
+
 
         }
+
     }
+
 }
 

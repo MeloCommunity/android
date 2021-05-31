@@ -8,14 +8,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.service.autofill.SaveCallback;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,14 +26,12 @@ import com.example.melocommunity.Connectors.SongService;
 import com.example.melocommunity.Connectors.UserService;
 import com.example.melocommunity.adapters.CommentsAdapter;
 import com.example.melocommunity.models.Comment;
-import com.example.melocommunity.models.Post;
 import com.example.melocommunity.models.Song;
 import com.example.melocommunity.models.User;
 import com.parse.FindCallback;
 import com.parse.ParseException;
-import com.parse.ParseFile;
-import com.parse.ParseObject;
 import com.parse.ParseQuery;
+
 import com.parse.ParseUser;
 import com.spotify.android.appremote.api.ConnectionParams;
 import com.spotify.android.appremote.api.Connector;
@@ -47,7 +43,6 @@ import com.spotify.sdk.android.authentication.AuthenticationResponse;
 
 import org.parceler.Parcels;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
