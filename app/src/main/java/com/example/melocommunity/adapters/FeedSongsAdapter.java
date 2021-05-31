@@ -121,7 +121,7 @@ public class FeedSongsAdapter extends RecyclerView.Adapter<FeedSongsAdapter.View
         private CommentsAdapter commentsAdapter;
         private List<Comment> allComments;
 
-        private final Button btnPost3;
+        private final ImageView btnPost3;
         private final EditText etDescription;
         private String userName;
         private String userID;

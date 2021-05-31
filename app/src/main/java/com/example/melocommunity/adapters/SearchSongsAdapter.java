@@ -115,7 +115,7 @@ public class SearchSongsAdapter extends RecyclerView.Adapter<SearchSongsAdapter.
         private List<Comment> allComments;
 
 
-        private final Button btnPost3;
+        private final ImageView btnPost3;
         private final EditText etDescription;
         private String userName;
 
