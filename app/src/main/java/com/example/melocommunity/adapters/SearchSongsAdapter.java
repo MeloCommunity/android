@@ -27,6 +27,10 @@ import com.example.melocommunity.models.Song;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
+import com.spotify.android.appremote.api.ConnectionParams;
+import com.spotify.android.appremote.api.Connector;
+import com.spotify.android.appremote.api.SpotifyAppRemote;
+import com.spotify.protocol.types.Track;
 
 import org.parceler.Parcels;
 
@@ -40,6 +44,10 @@ public class SearchSongsAdapter extends RecyclerView.Adapter<SearchSongsAdapter.
 
     public static final String TAG = "SearchSongAdapter";
 
+    private static final String CLIENT_ID =  "676d4db0d44b4f95956d8efa0ff25ff8";
+    private static final String REDIRECT_URI = "com.example.melocommunity://callback";
+
+    protected SpotifyAppRemote mSpotifyAppRemote;
 
     public SearchSongsAdapter(Context context, List<Song> searchSongs) {
         this.context = context;
@@ -50,6 +58,30 @@ public class SearchSongsAdapter extends RecyclerView.Adapter<SearchSongsAdapter.
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.item_post, parent, false);
+        ConnectionParams connectionParams =
+                new ConnectionParams.Builder(CLIENT_ID)
+                        .setRedirectUri(REDIRECT_URI)
+                        .showAuthView(true)
+                        .build();
+
+        SpotifyAppRemote.connect(this.context, connectionParams,
+                new Connector.ConnectionListener() {
+
+                    public void onConnected(SpotifyAppRemote spotifyAppRemote) {
+                        mSpotifyAppRemote = spotifyAppRemote;
+                        Log.d(TAG, "Connected! Yay!");
+
+                        // Now you can start interacting with App Remote
+                        connected();
+
+                    }
+
+                    public void onFailure(Throwable throwable) {
+                        Log.e(TAG, throwable.getMessage(), throwable);
+
+                        // Something went wrong when attempting to connect! Handle errors here
+                    }
+                });
         return new ViewHolder(view);
     }
 
@@ -73,6 +105,7 @@ public class SearchSongsAdapter extends RecyclerView.Adapter<SearchSongsAdapter.
         private final ImageView ivSongPoster;
         private final TextView lengthSong2;
 
+        private final ImageView btnPlay2;
 
         String imageSongUrl;
 
@@ -81,8 +114,8 @@ public class SearchSongsAdapter extends RecyclerView.Adapter<SearchSongsAdapter.
         private CommentsAdapter commentsAdapter;
         private List<Comment> allComments;
 
-        private final ImageView userImage3;
-        private final Button btnPost3;
+
+        private final ImageView btnPost3;
         private final EditText etDescription;
         private String userName;
 
@@ -118,8 +151,9 @@ public class SearchSongsAdapter extends RecyclerView.Adapter<SearchSongsAdapter.
             container = itemView.findViewById(R.id.container);
             lengthSong2 = itemView.findViewById(R.id.lengthSong2);
             btnPost3 = itemView.findViewById(R.id.btnPost3);
-            userImage3 = itemView.findViewById(R.id.userImage3);
             etDescription = itemView.findViewById(R.id.tiComment);
+            btnPlay2 = itemView.findViewById(R.id.btnPlay2);
+
         }
 
         public void bind(Song feedSong) {
@@ -140,14 +174,9 @@ public class SearchSongsAdapter extends RecyclerView.Adapter<SearchSongsAdapter.
                     .placeholder(R.mipmap.ic_launcher_round)
                     .error(R.mipmap.ic_launcher_round);
 
-            Glide.with(context)
-                    .load(userUrl)
-                    .apply(options)
-                    .into(userImage3);
 
             Integer minutes = (feedSong.getRelease()/1000/60);
             String min = minutes.toString();
-            if (min.length()==1) min = '0'+min;
             Integer seconds = (feedSong.getRelease()/1000)%60;
             String sec = seconds.toString();
             if (sec.length()==1) sec = '0'+sec;
@@ -192,6 +221,17 @@ public class SearchSongsAdapter extends RecyclerView.Adapter<SearchSongsAdapter.
                     Intent i = new Intent(context, DetailActivity.class);
                     i.putExtra("Song", Parcels.wrap(feedSong));
                     context.startActivity(i);
+                }
+            });
+
+            btnPlay2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String uri = "spotify:track:" + feedSong.getId();
+                    Log.d(TAG, uri);
+                    if (uri!=null) {
+                        mSpotifyAppRemote.getPlayerApi().play(uri);
+                    }
                 }
             });
         }
@@ -239,6 +279,14 @@ public class SearchSongsAdapter extends RecyclerView.Adapter<SearchSongsAdapter.
                 }
             });
         }
+    }
+    private void connected() {
+        // Subscribe to PlayerState
+        mSpotifyAppRemote.getPlayerApi()
+                .subscribeToPlayerState()
+                .setEventCallback(playerState -> {
+                    final Track track = playerState.track;
+                });
     }
 }
 

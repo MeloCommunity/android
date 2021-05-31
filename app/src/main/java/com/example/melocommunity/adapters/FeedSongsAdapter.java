@@ -21,12 +21,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.melocommunity.DetailActivity;
+import com.example.melocommunity.MainActivity;
 import com.example.melocommunity.R;
 import com.example.melocommunity.models.Comment;
 import com.example.melocommunity.models.Song;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
+import com.spotify.android.appremote.api.ConnectionParams;
+import com.spotify.android.appremote.api.Connector;
+import com.spotify.android.appremote.api.SpotifyAppRemote;
+import com.spotify.protocol.types.Track;
 
 import org.parceler.Parcels;
 
@@ -40,6 +45,10 @@ public class FeedSongsAdapter extends RecyclerView.Adapter<FeedSongsAdapter.View
 
     public static final String TAG = "FeedSongsAdapter";
 
+    private static final String CLIENT_ID =  "676d4db0d44b4f95956d8efa0ff25ff8";
+    private static final String REDIRECT_URI = "com.example.melocommunity://callback";
+
+    protected SpotifyAppRemote mSpotifyAppRemote;
 
     public FeedSongsAdapter(Context context, List<Song> feedSongs) {
         this.context = context;
@@ -50,6 +59,30 @@ public class FeedSongsAdapter extends RecyclerView.Adapter<FeedSongsAdapter.View
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.item_post, parent, false);
+        ConnectionParams connectionParams =
+                new ConnectionParams.Builder(CLIENT_ID)
+                        .setRedirectUri(REDIRECT_URI)
+                        .showAuthView(true)
+                        .build();
+
+        SpotifyAppRemote.connect(this.context, connectionParams,
+                new Connector.ConnectionListener() {
+
+                    public void onConnected(SpotifyAppRemote spotifyAppRemote) {
+                        mSpotifyAppRemote = spotifyAppRemote;
+                        Log.d(TAG, "Connected! Yay!");
+
+                        // Now you can start interacting with App Remote
+                        connected();
+
+                    }
+
+                    public void onFailure(Throwable throwable) {
+                        Log.e(TAG, throwable.getMessage(), throwable);
+
+                        // Something went wrong when attempting to connect! Handle errors here
+                    }
+                });
         return new ViewHolder(view);
     }
 
@@ -82,11 +115,14 @@ public class FeedSongsAdapter extends RecyclerView.Adapter<FeedSongsAdapter.View
         private CommentsAdapter commentsAdapter;
         private List<Comment> allComments;
 
-        private final ImageView userImage3;
-        private final Button btnPost3;
+        private final ImageView btnPost3;
         private final EditText etDescription;
         private String userName;
         private String userID;
+
+        private final ImageView btnPlay2;
+
+
 
 
         RecyclerView.OnItemTouchListener mScrollTouchListener = new RecyclerView.OnItemTouchListener() {
@@ -123,8 +159,8 @@ public class FeedSongsAdapter extends RecyclerView.Adapter<FeedSongsAdapter.View
             container = itemView.findViewById(R.id.container);
             lengthSong2 = itemView.findViewById(R.id.lengthSong2);
             btnPost3 = itemView.findViewById(R.id.btnPost3);
-            userImage3 = itemView.findViewById(R.id.userImage3);
             etDescription = itemView.findViewById(R.id.tiComment);
+            btnPlay2 = itemView.findViewById(R.id.btnPlay2);
         }
 
         public void bind(Song feedSong) {
@@ -135,6 +171,7 @@ public class FeedSongsAdapter extends RecyclerView.Adapter<FeedSongsAdapter.View
             imageSongUrl = feedSong.getImageUrl();
 
             SharedPreferences sharedPreferences = context.getApplicationContext().getSharedPreferences("SPOTIFY", 0);
+
             String userUrl = sharedPreferences.getString("imageUrl", "No User");
             userName = (sharedPreferences.getString("display_name", "No User"));
             userID = (sharedPreferences.getString("userid", "No User"));
@@ -145,14 +182,9 @@ public class FeedSongsAdapter extends RecyclerView.Adapter<FeedSongsAdapter.View
                     .placeholder(R.mipmap.ic_launcher_round)
                     .error(R.mipmap.ic_launcher_round);
 
-            Glide.with(context)
-                    .load(userUrl)
-                    .apply(options)
-                    .into(userImage3);
 
             Integer minutes = (feedSong.getRelease()/1000/60);
             String min = minutes.toString();
-            if (min.length()==1) min = '0'+min;
             Integer seconds = (feedSong.getRelease()/1000)%60;
             String sec = seconds.toString();
             if (sec.length()==1) sec = '0'+sec;
@@ -193,12 +225,24 @@ public class FeedSongsAdapter extends RecyclerView.Adapter<FeedSongsAdapter.View
 
 
 
+
             container.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent i = new Intent(context, DetailActivity.class);
                     i.putExtra("Song", Parcels.wrap(feedSong));
                     context.startActivity(i);
+                }
+            });
+
+            btnPlay2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String uri = "spotify:track:" + feedSong.getId();
+                    Log.d(TAG, uri);
+                    if (uri!=null) {
+                        mSpotifyAppRemote.getPlayerApi().play(uri);
+                    }
                 }
             });
         }
@@ -247,5 +291,15 @@ public class FeedSongsAdapter extends RecyclerView.Adapter<FeedSongsAdapter.View
             });
         }
         }
+
+
+    private void connected() {
+        // Subscribe to PlayerState
+        mSpotifyAppRemote.getPlayerApi()
+                .subscribeToPlayerState()
+                .setEventCallback(playerState -> {
+                    final Track track = playerState.track;
+                });
+    }
     }
 
