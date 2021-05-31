@@ -105,7 +105,7 @@ public class SearchSongsAdapter extends RecyclerView.Adapter<SearchSongsAdapter.
         private final ImageView ivSongPoster;
         private final TextView lengthSong2;
 
-        private final Button btnPlay2;
+        private final ImageView btnPlay2;
 
         String imageSongUrl;
 

@@ -61,14 +61,11 @@ public class DetailActivity extends AppCompatActivity {
     ImageView ivSongPoster;
     String imageSongUrl;
     Button btnPost;
-    Button btnPlay;
+    ImageView btnPlay;
     EditText etDescription;
     private ImageView btnDelete;
     String userName;
     String userID;
-
-
-
 
     private RecyclerView rvComments;
 
@@ -77,15 +74,8 @@ public class DetailActivity extends AppCompatActivity {
 
     private Context context;
 
-    private SharedPreferences.Editor editor;
-    private SharedPreferences msharedPreferences;
-
-    private RequestQueue queue;
-
     private static final String CLIENT_ID =  "676d4db0d44b4f95956d8efa0ff25ff8";
     private static final String REDIRECT_URI = "com.example.melocommunity://callback";
-    private static final int REQUEST_CODE = 1337;
-    private static final String SCOPES = "user-read-recently-played,user-library-modify,user-read-email,user-read-private, user-top-read, app-remote-control";
 
     protected SpotifyAppRemote mSpotifyAppRemote;
     private int stateDrawPlayPause = 1;
@@ -174,7 +164,6 @@ public class DetailActivity extends AppCompatActivity {
 
         Integer minutes = (song.getRelease()/1000/60);
         String min = minutes.toString();
-        if (min.length()==1) min = '0'+min;
         Integer seconds = (song.getRelease()/1000)%60;
         String sec = seconds.toString();
         if (sec.length()==1) sec = '0'+sec;

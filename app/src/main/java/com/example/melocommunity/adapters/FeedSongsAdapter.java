@@ -126,7 +126,7 @@ public class FeedSongsAdapter extends RecyclerView.Adapter<FeedSongsAdapter.View
         private String userName;
         private String userID;
 
-        private final Button btnPlay2;
+        private final ImageView btnPlay2;
 
 
 
