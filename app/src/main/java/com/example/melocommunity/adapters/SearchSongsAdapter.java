@@ -119,7 +119,7 @@ public class SearchSongsAdapter extends RecyclerView.Adapter<SearchSongsAdapter.
             lengthSong2 = itemView.findViewById(R.id.lengthSong2);
             btnPost3 = itemView.findViewById(R.id.btnPost3);
             userImage3 = itemView.findViewById(R.id.userImage3);
-            etDescription = itemView.findViewById(R.id.etEditComment);
+            etDescription = itemView.findViewById(R.id.tiComment);
         }
 
         public void bind(Song feedSong) {

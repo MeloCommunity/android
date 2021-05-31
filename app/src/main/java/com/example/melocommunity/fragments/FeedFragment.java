@@ -93,7 +93,7 @@ public class FeedFragment extends Fragment {
         rvPosts = view.findViewById(R.id.rvPosts);
         btnPost3 = view.findViewById(R.id.btnPost3);
         userImage3 = view.findViewById(R.id.userImage3);
-        etDescription = view.findViewById(R.id.etEditComment);
+        etDescription = view.findViewById(R.id.tiComment);
 
         getTracks();
 

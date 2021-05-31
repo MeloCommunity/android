@@ -135,7 +135,7 @@
         app:boxBackgroundColor="#FFFFFF">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etEditComment"
+            android:id="@+id/tiComment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="2dp"

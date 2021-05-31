@@ -62,7 +62,7 @@ public class DetailActivity extends AppCompatActivity {
         tvArtist = findViewById(R.id.tvComment);
         ivSongPoster = findViewById(R.id.ivSongPoster);
         btnPost = findViewById(R.id.btnPost);
-        etDescription = findViewById(R.id.etEditComment);
+        etDescription = findViewById(R.id.tiComment);
         lengthSong = findViewById(R.id.lengthSong);
         btnDelete = findViewById(R.id.btnDelete);
 
