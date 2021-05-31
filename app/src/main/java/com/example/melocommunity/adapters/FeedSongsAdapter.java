@@ -3,11 +3,13 @@ package com.example.melocommunity.adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.DataSetObserver;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -201,6 +203,8 @@ public class FeedSongsAdapter extends RecyclerView.Adapter<FeedSongsAdapter.View
             allComments = new ArrayList<>();
             commentsAdapter = new CommentsAdapter(context, allComments);
 
+
+
             // Steps to use the recycler view:
             // 0. create layout for one row in the list
             // 1. create the adapter
@@ -210,6 +214,7 @@ public class FeedSongsAdapter extends RecyclerView.Adapter<FeedSongsAdapter.View
             // 4. set the layout manager on the recycler view
             rvComments.setLayoutManager(new LinearLayoutManager(context));
             queryComments(feedSong.getId());
+
 
             //On click that sends the information to postComment
             btnPost3.setOnClickListener(new View.OnClickListener() {
