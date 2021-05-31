@@ -7,12 +7,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.service.autofill.SaveCallback;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,19 +19,13 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.melocommunity.adapters.CommentsAdapter;
 import com.example.melocommunity.models.Comment;
-import com.example.melocommunity.models.Post;
 import com.example.melocommunity.models.Song;
 import com.parse.FindCallback;
 import com.parse.ParseException;
-import com.parse.ParseFile;
-import com.parse.ParseObject;
 import com.parse.ParseQuery;
-import com.parse.ParseUser;
-import com.spotify.android.appremote.api.SpotifyAppRemote;
 
 import org.parceler.Parcels;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -70,7 +62,7 @@ public class DetailActivity extends AppCompatActivity {
         tvArtist = findViewById(R.id.tvComment);
         ivSongPoster = findViewById(R.id.ivSongPoster);
         btnPost = findViewById(R.id.btnPost);
-        etDescription = findViewById(R.id.tiComment);
+        etDescription = findViewById(R.id.etEditComment);
         lengthSong = findViewById(R.id.lengthSong);
         btnDelete = findViewById(R.id.btnDelete);
 

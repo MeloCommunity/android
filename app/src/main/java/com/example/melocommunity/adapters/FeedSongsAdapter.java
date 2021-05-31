@@ -13,7 +13,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -21,13 +20,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
-import com.example.melocommunity.Connectors.SongService;
-import com.example.melocommunity.Connectors.UserService;
 import com.example.melocommunity.DetailActivity;
 import com.example.melocommunity.R;
 import com.example.melocommunity.models.Comment;
 import com.example.melocommunity.models.Song;
-import com.example.melocommunity.models.User;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
@@ -36,8 +32,6 @@ import org.parceler.Parcels;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static com.parse.Parse.getApplicationContext;
 
 public class FeedSongsAdapter extends RecyclerView.Adapter<FeedSongsAdapter.ViewHolder> {
 
@@ -130,7 +124,7 @@ public class FeedSongsAdapter extends RecyclerView.Adapter<FeedSongsAdapter.View
             lengthSong2 = itemView.findViewById(R.id.lengthSong2);
             btnPost3 = itemView.findViewById(R.id.btnPost3);
             userImage3 = itemView.findViewById(R.id.userImage3);
-            etDescription = itemView.findViewById(R.id.tiComment);
+            etDescription = itemView.findViewById(R.id.etEditComment);
         }
 
         public void bind(Song feedSong) {
