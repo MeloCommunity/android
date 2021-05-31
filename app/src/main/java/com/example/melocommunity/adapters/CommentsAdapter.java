@@ -129,6 +129,7 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.ViewHo
                                 object.deleteInBackground(e2 -> {
                                     if(e2==null & comment.getUserID().equals(userID)){
                                         Toast.makeText(context, "Delete Successful", Toast.LENGTH_SHORT).show();
+                                        comments.remove(comment);
                                         notifyDataSetChanged();
                                     }else{
                                         //Something went wrong while deleting the Object
@@ -152,7 +153,7 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.ViewHo
                     alertDialogBuilder.setTitle("Edit Comment");
                     alertDialogBuilder.setCancelable(true);
                     //We are setting our custom popup view by AlertDialog.Builder
-                    LayoutInflater inflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
+                    LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                     View dialogView = inflater.inflate(R.layout.edit_alert_dialogbox, null);
                     alertDialogBuilder.setView(dialogView);
                     etEditComment = dialogView.findViewById(R.id.etEditComment);
@@ -172,6 +173,7 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.ViewHo
                             else {
                                 SaveEdit(etEditComment.getText().toString());
                                 alertDialog.cancel();
+                                comment.setDescription(etEditComment.getText().toString());
                                 notifyDataSetChanged();
                             }
                         }
