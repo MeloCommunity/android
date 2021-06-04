@@ -156,3 +156,9 @@ Here's a Walkthrough of implemented user stories:
 
 <img src='walkthrough.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
+## Updated walkthrough (temp)
+
+![Peek 2021-06-03 21-17](https://user-images.githubusercontent.com/43976085/120731474-b29fba80-c4b1-11eb-8888-cb4be42bb8d8.gif)
+
+
+
