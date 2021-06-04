@@ -41,10 +41,10 @@ Combining Spotify, Instagram, and Reddit, MeloCommunity is a platform for music 
 * [x] As a user I should be able to view my own profile
 * [x] As a user I should be able to search a song
 * [x] As a user I should be able to delete my own comments
-* [ ] As a user I should be able to edit my own comments
-* [ ] As a user I should be able to play a song I searched
-* [ ] As a user I should be able to play a song directly from the feed screen
-* [ ] As a user I should be able to play a song directly from the detail screen
+* [x] As a user I should be able to edit my own comments
+* [x] As a user I should be able to play a song I searched
+* [x] As a user I should be able to play a song directly from the feed screen
+* [x] As a user I should be able to play a song directly from the detail screen
 * [ ] As a user I should be able to play a click currently playing song and get to it's detail screen
 
 
